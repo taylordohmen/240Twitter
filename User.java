@@ -10,7 +10,9 @@ public class User {
         private boolean admin = false;
         private String[] partyPokemon;
         private String[] subscribees;
-
+        
+        public User() {}
+        
         public void updateProfile() {
             Scanner in = new Scanner(System.in);
             String choice;
