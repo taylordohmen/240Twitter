@@ -1,6 +1,3 @@
-// import Main;
-// import Post;
-// import UserManager;
 import java.util.*;
 import java.io.*;
 
@@ -8,15 +5,16 @@ public class Feed {
 	private int length;
 	private FileInputStream database;
 	private Scanner storage;
-	private ArrayList posts;
+	private Post posts[];
 	public Feed(int option, int len){
 		try{
 			database = new FileInputStream("posts.txt");
 		} catch (FileNotFoundException e) {
-			System.out.println("Where are we running this program from, exactly, and where are the posts being kept?\n Should be in the same place.");
+			System.out.println("Where are you running this program from, exactly, and where are the posts being kept?\n Should be in the same place.");
 		}
 		storage = new Scanner(database);
 		length = len;
+		posts = new Post[length];
 		update(option);
 	}
 	private void update(int option){
@@ -39,7 +37,8 @@ public class Feed {
 	}
 	private void updateDate(){
 		for(int i = 0; i< length; i++){
-			
+			String post[] = storage.nextLine().split(",");
+			posts[i] = new Post();//post); // TODO: What goes in the post constructor?
 		}
 	}
 	private void updateHash(String hash){}
@@ -49,5 +48,8 @@ public class Feed {
 	private void download(String filename){}
 	private void insertDM(DirectMessage dm){
 		// TODO: figure out what the heck to do with DM's.
+	}
+	public static void main(String args[]){
+		// TODO: remove this because it's just for testing
 	}
 }
