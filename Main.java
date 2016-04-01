@@ -26,6 +26,7 @@ public class Main {
                         userName = input.nextLine();
                         System.out.println("Please enter a password");
                         userPass = input.nextLine();
+                        //Add above (plus more? to database/text file
                         break;
                     case 2: 
                         System.out.println("Username: ");
@@ -45,7 +46,24 @@ public class Main {
                             "6) Update User Profile\n" +
                             "7) Logout\n"
                            );
-                                            
+                            
+                            switch (selection){
+                                case 1:
+                                    break;
+                                case 2:
+                                    break;
+                                case 3:
+                                    break;
+                                case 4: 
+                                    break;
+                                case 5:
+                                    break;
+                                case 6:
+                                    break;
+                                case 7:
+                                    System.exit(0);
+                                           
+                            }                 
                         }
 	}
 }
