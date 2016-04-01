@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class UserManager {
 
-    private static final int NUMFIELDS = 15;
+    public static final int NUMFIELDS = 15;
 
     public void registerUser(String[] userInfo) {
 
@@ -23,20 +23,22 @@ public class UserManager {
     public static String[][] getAllUsers(int numUsers) {
 
         String[][] allUsers = new String[numUsers][NUMFIELDS];
-        String[] allFields = new String[NUMFIELDS];
-        int placeCount = 0;
 
         try (FileInputStream fStream = new FileInputStream("UserInfo.txt")) {
-
+            
             Scanner in = new Scanner(fStream);
-            StringBuilder currentField = new StringBuilder("");
 
             for (int j = 0; j < numUsers; j++) {
-
-                String line = in.next();
-
+                
+                String[] allFields = new String[NUMFIELDS];
+                int placeCount = 0;
+                StringBuilder currentField = new StringBuilder("");
+                String line = in.nextLine();
+                
                 for (int i = 0; i < line.length(); i++) {
+                    
                     char currentChar = line.charAt(i);
+                    
                     if (currentChar == ',') {
                         allFields[placeCount] = currentField.toString();
                         placeCount++;
@@ -45,20 +47,25 @@ public class UserManager {
                         currentField.append(currentChar);
                     }
                 }
-                
+
                 allUsers[j] = allFields;
             }
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
 
         return allUsers;
     }
 
 //
-//	public String[] getUserInfo(String username) {
-//
+//	public String[] getUserInfo(String username, String[][] allUsers) {
+//          sort allUsers by alphabetical order
+//          binary search to find correct user
+//          return info array for that user
 //	} 
 //
-//	public String[] getSubscribers(String username) {
-//
+//	public String[] getSubscribedTo(String username) {
+//          Read array of usernames to which the user is subscribed
+//          from *username*SubscribedTo.txt
+//          return that array
 //	}
 }
