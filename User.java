@@ -16,25 +16,93 @@ public class User {
         public void updateProfile() {
             Scanner in = new Scanner(System.in);
             String choice;
-            
-            System.out.println("Enter an option: " +
-            "/nUsername"
-            + "/nReal Name"
-            + "/nAge"
-            + "/nBio"
-            + "/nHometown"
-            + "/nFavorite Pokemon type"
-            + "/nPartY Pokemon"
-            + "/nNumber of Badges");
-   
+            String choice2; 
+            System.out.println("Would you like to set or get user profile data members? (set/get):");
             choice = in.nextLine();
+            
             switch(choice) {
-                case "Username":
+                case "set":
+                    System.out.println("Enter an option to set: " +
+                    "/nUsername"
+                    + "/nReal Name"
+                    + "/nAge"
+                    + "/nBio"
+                    + "/nHometown"
+                    + "/nFavorite Pokemon type"
+                    + "/nPartY Pokemon"
+                    + "/nNumber of Badges");
+                    choice2 = in.nextLine();
+                    
+                    switch(choice2) {
+                        case "Username":
+                            break;
+                        case "Real Name":
+                            break;
+                        case "Age":
+                            break;
+                        case "Bio":
+                            break;
+                        case "Hometown":
+                            break;
+                        case "Favoite type of Pokemon":
+                            break;
+                        case "Party Pokemon":
+                            break;
+                        case "Number of Badges":
+                            System.out.println("Enter a new number of badges for your profile: ");
+                            numOfBadges = in.nextInt();
+                            setBadges(numOfBadges);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "get":
+                    System.out.println("Enter an option to get: " +
+                    "/nUsername"
+                    + "/nReal Name"
+                    + "/nAge"
+                    + "/nBio"
+                    + "/nHometown"
+                    + "/nFavorite Pokemon type"
+                    + "/nPartY Pokemon"
+                    + "/nNumber of Badges");
+                    choice2 = in.nextLine();
+                    
+                    switch(choice2) {
+                        case "Username":
+                            getUsername();
+                            break;
+                        case "Real Name":
+                            getRealName();
+                            break;
+                        case "Age":
+                            getAge();
+                            break;
+                        case "Bio":
+                            getBio();
+                            break;
+                        case "Hometown":
+                            getHometown();
+                            break;
+                        case "Favoite type of Pokemon":
+                            getFavoriteType();
+                            break;
+                        case "Party Pokemon":
+                            getParty();
+                            break;
+                        case "Number of Badges":
+                            getBadges();
+                            break;
+                        default:
+                            break;
+                    }
                     break;
                 default:
                     break;
             }
         }
+            
         //setters
         public void setUsername(String username) {
             this.username = username;
