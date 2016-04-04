@@ -1,17 +1,31 @@
 import java.util.*;
 public class User {
 	private String username;
+        private String password;
         private String realName;
         private String bio;
         private String favType;
         private String hometown;
+        private String favPoke;
         private int age;
         private int numOfBadges;
         private boolean admin = false;
         private String[] partyPokemon;
         private String[] subscribees;
         
-        public User() {}
+        //this takes a String array of length 15
+        public User(String[] userInfo) {
+            username = userInfo[0];
+            password = userInfo[1];
+            realName = userInfo[2];
+            age = Integer.parseInt(userInfo[3]);
+            hometown = userInfo[4];
+            numOfBadges = Integer.parseInt(userInfo[5]);
+            favPoke = userInfo[6];
+            partyPokemon = Arrays.copyOfRange(userInfo, 7, 13);
+            bio = userInfo[13];
+            favType = userInfo[14];
+        }
         
         public void updateProfile() {
             Scanner in = new Scanner(System.in);
@@ -23,14 +37,14 @@ public class User {
             switch(choice) {
                 case "set":
                     System.out.println("Enter an option to set: " +
-                    "/nUsername"
-                    + "/nReal Name"
-                    + "/nAge"
-                    + "/nBio"
-                    + "/nHometown"
-                    + "/nFavorite Pokemon type"
-                    + "/nPartY Pokemon"
-                    + "/nNumber of Badges");
+                    "\nUsername"
+                    + "\nReal Name"
+                    + "\nAge"
+                    + "\nBio"
+                    + "\nHometown"
+                    + "\nFavorite Pokemon type"
+                    + "\nPartY Pokemon"
+                    + "\nNumber of Badges");
                     choice2 = in.nextLine();
                     
                     switch(choice2) {
@@ -59,14 +73,14 @@ public class User {
                     break;
                 case "get":
                     System.out.println("Enter an option to get: " +
-                    "/nUsername"
-                    + "/nReal Name"
-                    + "/nAge"
-                    + "/nBio"
-                    + "/nHometown"
-                    + "/nFavorite Pokemon type"
-                    + "/nPartY Pokemon"
-                    + "/nNumber of Badges");
+                    "\nUsername"
+                    + "\nReal Name"
+                    + "\nAge"
+                    + "\nBio"
+                    + "\nHometown"
+                    + "\nFavorite Pokemon type"
+                    + "\nPartY Pokemon"
+                    + "\nNumber of Badges");
                     choice2 = in.nextLine();
                     
                     switch(choice2) {
@@ -102,6 +116,10 @@ public class User {
                     break;
             }
         }
+        
+        public void subscribe(String username) {
+            
+        }
             
         //setters
         public void setUsername(String username) {
@@ -132,6 +150,9 @@ public class User {
         public String getUsername() {
             return username;
         }
+        public String getPassword() {
+            return password;
+        }
         public String getRealName() {
             return realName;
         }
@@ -143,6 +164,9 @@ public class User {
         }
         public String getHometown() {
             return hometown;
+        }
+        public String getFavPoke() {
+            return favPoke;
         }
         public String getFavoriteType() {
             return favType;
