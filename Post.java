@@ -7,7 +7,7 @@ public class Post {
         private String locationTag;
         private String hashtag; //need to search through postContents for these and keep them separate
         private Date date;
-        
+/*        
         public Post() {
             Scanner in = new Scanner(System.in);
             System.out.println("Input a message to post: ");
@@ -17,6 +17,13 @@ public class Post {
             
             //postID++;
         }
-        
-        
+  */      
+        public Post(int privacy, String user, String contents,  //constructor shouldn't have IO
+			String location, int numHash, String hashtags[]){   //IO is handled in Main
+			setPrivacy(privacy);
+			setUser(user);
+			setContents(contents);
+			setLocation(location);
+			setHashtags(numHash, hashtags[]);
+		}
 }
