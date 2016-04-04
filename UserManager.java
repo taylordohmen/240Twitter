@@ -5,12 +5,12 @@ import java.util.*;
 public class UserManager {
 
     public static final int NUMFIELDS = 15;
-    public static Scanner in;
+    private static Scanner in;
 
     //checks database for new username
     //if it does not find it, it
     //appends information for new user at the end of the file
-    public static void registerUser(String[] userInfo, ArrayList<String[]> allUsers) {
+    public static void registerUser(String[] userInfo, ArrayList<User> allUsers) {
         if (uniqueUsername(userInfo[0], allUsers)) {
             try (FileWriter fw = new FileWriter("UserInfo.csv", true)) {
                 for (String s : userInfo) {
@@ -28,10 +28,10 @@ public class UserManager {
     //helper function for registerUser()
     //returns false if username already exists on file
     //returns true otherwise
-    private static boolean uniqueUsername(String username, ArrayList<String[]> allUsers) {
+    private static boolean uniqueUsername(String username, ArrayList<User> allUsers) {
         boolean unique = true;
-        for (String[] s : allUsers) {
-            if (s[0].equals(username)) {
+        for (User u : allUsers) {
+            if (getUserInfo(u)[0].equals(username)) {
                 unique = false;
                 break;
             }
@@ -58,11 +58,11 @@ public class UserManager {
      */
     //right now this checks the database to make sure that the username/password combination is valid
     //and contains a boolean indicating such
-    public static void loginUser(String username, String password, ArrayList<String[]> allUsers) {
+    public static void loginUser(String username, String password, ArrayList<User> allUsers) {
         boolean valid = false;
-        for (String[] s : allUsers) {
-            if (username.equals(s[0])) {
-                if (password.equals(s[1])) {
+        for (User u : allUsers) {
+            if (username.equals(u.getUsername())) {
+                if (password.equals(u.getPassword())) {
                     valid = true;
                 }
             }
@@ -71,15 +71,16 @@ public class UserManager {
 
     //what should this method do?
     //will there be a list of logged on users in the main method?
-    public static void logoutUser(String username, String password) {
+    public static void logoutUser(String username) {
 
     }
 
     //gets all user information for each user registered with the system
     //each user must have all info on a single line in the database
-    public static ArrayList<String[]> getAllUsers() {
+    //returns an ArrayList of User objects
+    public static ArrayList<User> getAllUsers() {
 
-        ArrayList<String[]> allUsers = new ArrayList();
+        ArrayList<User> allUsers = new ArrayList();
 
         try (FileInputStream fStream = new FileInputStream("UserInfo.csv")) {
 
@@ -104,22 +105,35 @@ public class UserManager {
                     }
                 }
 
-                allUsers.add(allFields);
+                allUsers.add(new User(allFields));
             }
         } catch (IOException e) {
+        } finally {
+            in.close();
         }
 
         return allUsers;
     }
 
-//
-//	public String[] getUserInfo(String username, String[][] allUsers) {
-//          sort allUsers by alphabetical order
-//          binary search to find correct user
-//          return info array for that user
-//	}
-    
-    //returns an ArrayList of strings which are the usernames of of all the users the designated user is subscribed to
+    //returns an array that contains all user info as strings in the same order in which they are stored in the .csv
+    public static String[] getUserInfo(User u) {
+        String[] userInfo = new String[NUMFIELDS];
+        userInfo[0] = u.getUsername();
+        userInfo[1] = u.getPassword();
+        userInfo[2] = u.getRealName();
+        userInfo[3] = Integer.toString(u.getAge());
+        userInfo[4] = u.getHometown();
+        userInfo[5] = Integer.toString(u.getBadges());
+        userInfo[6] = u.getFavPoke();
+        for (int i = 7; i < 13; i++) {
+            userInfo[i] = u.getParty()[i - 7];
+        }
+        userInfo[13] = u.getBio();
+        userInfo[14] = u.getFavoriteType();
+        return userInfo;
+    }
+
+    //returns an array of strings which are the usernames of of all the users the designated user is subscribed to
     //assumes a SubscribesTo.csv file already exists for the designated user
     public static ArrayList<String> getSubscribedTo(String username) {
         ArrayList<String> subscribedTo = new ArrayList();
@@ -139,9 +153,10 @@ public class UserManager {
                         currentName.append(line.charAt(i));
                     }
                 }
-
             }
         } catch (IOException e) {
+        } finally {
+            in.close();
         }
         return subscribedTo;
     }
