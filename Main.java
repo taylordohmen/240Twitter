@@ -47,8 +47,8 @@ public class Main {
 						"6) Update User Profile\n" +
 						"7) Logout\n"
 						);
-
-				switch (selection){
+				int selection2 = input.nextInt();
+				switch (selection2){
 					case 1:
 						break;
 					case 2:
