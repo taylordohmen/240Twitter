@@ -29,7 +29,6 @@ public class Main {
 					System.out.println("Please enter a password");
 					userPass = input.next();
 					//Add above (plus more? to database/text file
-					break;
 				case 2:
 					System.out.println("Username: ");
 					String username = input.next(); 
@@ -42,7 +41,7 @@ public class Main {
 					System.exit(0);
 			}
 
-			while(loggedIn = true){
+			while(loggedIn == true){
 
 				System.out.println("You are logged in, please select an action: ");
 				System.out.println("1) Update Feed\n" +
@@ -72,7 +71,7 @@ public class Main {
 						loggedIn = false;
 
 				}                 
-				break;
+			//break;
 			}
 		}
 	}
