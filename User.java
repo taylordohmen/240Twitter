@@ -1,4 +1,6 @@
 import java.util.*;
+import java.io.*;
+
 public class User {
 	private String username;
         private String password;
@@ -117,8 +119,15 @@ public class User {
             }
         }
         
-        public void subscribe(String username) {
-            
+        //checks to see if the given username is a valid username
+        //if so it writes the username to this user's SubscribesTo.csv
+        public void subscribeTo(String username) {
+            if (UserManager.isUser(username)) {
+                try (FileWriter fw = new FileWriter(this.username + "SubscribesTo.csv", true)) {
+                    fw.write(username + ",");
+            } catch (IOException e) {
+            }
+            }
         }
             
         //setters
@@ -145,6 +154,12 @@ public class User {
         }
         public void setBadges(int numOfBadges) {
             this.numOfBadges = numOfBadges;
+        }
+        public void setFavPoke(String fav) {
+            this.favPoke = fav;
+        }
+        public void setPassword(String pass) {
+            this.password = pass;
         }
         //getters
         public String getUsername() {
