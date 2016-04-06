@@ -19,20 +19,22 @@ public class Main {
 
 
 			int selection = input.nextInt();
+			//input.next();
 			switch (selection){
 				case 1:
 					String userName;
 					String userPass;
-					System.out.println("Thank you for choosing to register with fetched. Please enter a username: ");
-					userName = input.nextLine();
+					System.out.println("Thank you for choosing to register with fetched.\nPlease enter a username: ");
+					userName = input.next();
 					System.out.println("Please enter a password");
-					userPass = input.nextLine();
+					userPass = input.next();
 					//Add above (plus more? to database/text file
 					break;
-				case 2: 
+				case 2:
 					System.out.println("Username: ");
-
+					String username = input.next(); 
 					System.out.println("Password: ");
+					String password = input.next();
 					//if username and password matches then
 					loggedIn = true;
 					break;
@@ -41,7 +43,7 @@ public class Main {
 			}
 
 			while(loggedIn = true){
-				
+
 				System.out.println("You are logged in, please select an action: ");
 				System.out.println("1) Update Feed\n" +
 						"2) Submit Post\n" +
@@ -52,6 +54,7 @@ public class Main {
 						"7) Logout\n"
 						);
 				int selection2 = input.nextInt();
+				//input.next();
 				switch (selection2){
 					case 1:
 						break;
@@ -69,7 +72,7 @@ public class Main {
 						loggedIn = false;
 
 				}                 
-			break;
+				break;
 			}
 		}
 	}
