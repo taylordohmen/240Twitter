@@ -14,7 +14,8 @@ public class Main {
 			System.out.println("Welcome to Fetch'd!");
 			System.out.println("Select an action: \n" +
 					"1)Register a new user\n" +
-					"2)Log in\n" );
+					"2)Log in\n" +
+					"3)Quit" );
 
 
 			int selection = input.nextInt();
@@ -34,6 +35,9 @@ public class Main {
 					System.out.println("Password: ");
 					//if username and password matches then
 					loggedIn = true;
+					break;
+				case 3:
+					System.exit(0);
 			}
 
 			while(loggedIn = true){
@@ -62,7 +66,7 @@ public class Main {
 					case 6:
 						break;
 					case 7:
-						System.exit(0);
+						loggedIn = false;
 
 				}                 
 			break;
