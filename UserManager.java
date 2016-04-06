@@ -5,12 +5,12 @@ import java.util.*;
 public class UserManager {
 
     public static final int NUMFIELDS = 15;
-    private static Scanner in;
 
     //checks database for new username
     //if it does not find it, it
     //appends information for new user at the end of the file
-    public static void registerUser(String[] userInfo, ArrayList<User> allUsers) {
+    public static void registerUser(String[] userInfo) {
+        ArrayList<User> allUsers = getAllUsers();
         if (uniqueUsername(userInfo[0], allUsers)) {
             try (FileWriter fw = new FileWriter("UserInfo.csv", true)) {
                 for (String s : userInfo) {
@@ -58,7 +58,8 @@ public class UserManager {
      */
     //right now this checks the database to make sure that the username/password combination is valid
     //and contains a boolean indicating such
-    public static void loginUser(String username, String password, ArrayList<User> allUsers) {
+    public static void loginUser(String username, String password) {
+        ArrayList<User> allUsers = getAllUsers();
         boolean valid = false;
         for (User u : allUsers) {
             if (username.equals(u.getUsername())) {
@@ -82,9 +83,8 @@ public class UserManager {
 
         ArrayList<User> allUsers = new ArrayList();
 
-        try (FileInputStream fStream = new FileInputStream("UserInfo.csv")) {
+        try (Scanner in = new Scanner(new FileInputStream("UserInfo.csv"))) {
 
-            in = new Scanner(fStream);
             while (in.hasNextLine()) {
 
                 String[] allFields = new String[NUMFIELDS];
@@ -108,10 +108,7 @@ public class UserManager {
                 allUsers.add(new User(allFields));
             }
         } catch (IOException e) {
-        } finally {
-            in.close();
         }
-
         return allUsers;
     }
 
@@ -133,13 +130,14 @@ public class UserManager {
         return userInfo;
     }
 
-    //returns an array of strings which are the usernames of of all the users the designated user is subscribed to
+    //returns an ArrayList of strings which are the usernames of of all the users the designated user is subscribed to
     //assumes a SubscribesTo.csv file already exists for the designated user
     public static ArrayList<String> getSubscribedTo(String username) {
+        
         ArrayList<String> subscribedTo = new ArrayList();
-        try (FileInputStream fStream = new FileInputStream(username + "SubscribesTo.csv")) {
+        
+        try (Scanner in = new Scanner(new FileInputStream(username + "SubscribesTo.csv"))) {
 
-            in = new Scanner(fStream);
             while (in.hasNextLine()) {
 
                 String line = in.nextLine();
@@ -155,9 +153,19 @@ public class UserManager {
                 }
             }
         } catch (IOException e) {
-        } finally {
-            in.close();
         }
         return subscribedTo;
+    }
+    
+    public static boolean isUser(String username) {
+        ArrayList<User> allUsers = getAllUsers();
+        boolean isUser = false;
+        for (User u : allUsers) {
+            if (username.equals(u.getUsername())) {
+                isUser = true;
+                break;
+            }
+        }
+        return isUser;
     }
 }
