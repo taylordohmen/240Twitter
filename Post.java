@@ -18,8 +18,9 @@ public class Post {
             //postID++;
         }
   */      
-        public Post(int privacy, String user, String contents,  //constructor shouldn't have IO
+        public Post(int postID, int privacy, String user, String contents,  //constructor shouldn't have IO
 			String location, int numHash, String hashtags[]){   //IO is handled in Main
+			setPostID(postID);
 			setPrivacy(privacy);
 			setUser(user);
 			setContents(contents);
