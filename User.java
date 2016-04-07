@@ -119,10 +119,22 @@ public class User {
             }
         }
         
-        //checks to see if the given username is a valid username
-        //if so it writes the username to this user's SubscribesTo.csv
+        //returns boolean indicating whether this is subscribed to the given username
+        public boolean isSubscribedTo(String username) {
+            boolean isSubscribed = false;
+            for(String s : UserManager.getSubscribedTo(this.username)) {
+                if (s.equals(username)) {
+                    isSubscribed = true;
+                    break;
+                }
+            }
+            return isSubscribed;
+        }
+        
+        //checks to see if the given username is a valid username and that the given username is not already subscribed to
+        //if so it appends the username to this user's SubscribesTo.csv
         public void subscribeTo(String username) {
-            if (UserManager.isUser(username)) {
+            if (UserManager.isUser(username) && !isSubscribedTo(username)) {
                 try (FileWriter fw = new FileWriter(this.username + "SubscribesTo.csv", true)) {
                     fw.write(username + ",");
             } catch (IOException e) {
