@@ -132,30 +132,7 @@ public class UserManager {
 
     //returns an ArrayList of strings which are the usernames of of all the users the designated user is subscribed to
     //assumes a SubscribesTo.csv file already exists for the designated user
-    public static ArrayList<String> getSubscribedTo(String username) {
-        
-        ArrayList<String> subscribedTo = new ArrayList();
-        
-        try (Scanner in = new Scanner(new FileInputStream(username + "SubscribesTo.csv"))) {
 
-            while (in.hasNextLine()) {
-
-                String line = in.nextLine();
-                StringBuilder currentName = new StringBuilder("");
-
-                for (int i = 0; i < line.length(); i++) {
-                    if (line.charAt(i) == ',') {
-                        subscribedTo.add(currentName.toString());
-                        currentName = new StringBuilder("");
-                    } else {
-                        currentName.append(line.charAt(i));
-                    }
-                }
-            }
-        } catch (IOException e) {
-        }
-        return subscribedTo;
-    }
     
     public static boolean isUser(String username) {
         ArrayList<User> allUsers = getAllUsers();
