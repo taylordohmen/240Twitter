@@ -63,14 +63,37 @@ public class User {
                         setRealName(realName);
                         break;
                     case "age":
+                        System.out.println("Enter a new age: ");
+                        age = in.nextInt();
+                        setAge(age);
                         break;
-                    case "Bio":
+                    case "bio":
+                        System.out.println("Enter a new bio: ");
+                        bio = in.nextLine();
+                        setBio(bio);
                         break;
                     case "hometown":
+                        System.out.println("Enter a new hometown: ");
+                        hometown = in.nextLine();
+                        setHometown(hometown);
                         break;
-                    case "favoite type of pokemon":
+                    case "favorite type of pokemon":
+                        System.out.println("Enter a new favorite type of pokemon: ");
+                        favType = in.nextLine();
+                        setFavoriteType(favType);
                         break;
-                    case "pparty pokemon":
+                    case "party pokemon":
+                        for(int i=0; i<6; i++) {
+                            System.out.println("Add a new Pokemon to your party? (y/n): ");
+                            String poke = " ";
+                            if(poke.equals("y"))
+                                partyPokemon[i] = in.nextLine();
+                            else {
+                                for(int j=0; j<i; j++)
+                                    partyPokemon[j] = " ";
+                            }    
+                        }
+                        setParty(partyPokemon);
                         break;
                     case "number of badges":
                         System.out.println("Enter a new number of badges for your profile: ");
@@ -139,8 +162,8 @@ public class User {
 }
 
         //checks to see if the given username is a valid username and that the given username is not already subscribes to
-//if so it appends the username to this user's SubscribesTo.csv
-public void subscribeTo(String username) {
+        //if so it appends the username to this user's SubscribesTo.csv
+    public void subscribeTo(String username) {
         if (UserManager.isUser(username) && !isSubscribedTo(username)) {
             try (FileWriter fw = new FileWriter(this.username + "SubscribesTo.csv", true)) {
                 fw.write(username + ",");
