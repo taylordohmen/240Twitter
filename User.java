@@ -11,8 +11,8 @@ public class User {
     private String favType;
     private String hometown;
     private String favPoke;
-    private int age;
-    private int numOfBadges;
+    private String age;
+    private String numOfBadges;
     private boolean admin = false;
     private String[] partyPokemon;
     private String[] subscribees;
@@ -22,9 +22,9 @@ public class User {
         username = userInfo[0];
         password = userInfo[1];
         realName = userInfo[2];
-        age = Integer.parseInt(userInfo[3]);
+        age = (userInfo[3]);
         hometown = userInfo[4];
-        numOfBadges = Integer.parseInt(userInfo[5]);
+        numOfBadges = (userInfo[5]);
         favPoke = userInfo[6];
         partyPokemon = Arrays.copyOfRange(userInfo, 7, 13);
         bio = userInfo[13];
@@ -64,7 +64,7 @@ public class User {
                         break;
                     case "age":
                         System.out.println("Enter a new age: ");
-                        age = in.nextInt();
+                        age = in.nextLine();
                         setAge(age);
                         break;
                     case "bio":
@@ -98,7 +98,7 @@ public class User {
                         break;
                     case "number of badges":
                         System.out.println("Enter a new number of badges for your profile: ");
-                        numOfBadges = in.nextInt();
+                        numOfBadges = in.nextLine();
                         setBadges(numOfBadges);
                         break;
                     default:
@@ -227,7 +227,7 @@ public class User {
         this.realName = realName;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -247,7 +247,7 @@ public class User {
         this.partyPokemon = partyPokemon.clone(); //different method to copy array?
     }
 
-    public void setBadges(int numOfBadges) {
+    public void setBadges(String numOfBadges) {
         this.numOfBadges = numOfBadges;
     }
 
@@ -273,7 +273,7 @@ public class User {
         return realName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
@@ -297,7 +297,7 @@ public class User {
         return partyPokemon;
     }
 
-    public int getBadges() {
+    public String getBadges() {
         return numOfBadges;
     }
 }
