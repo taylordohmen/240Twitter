@@ -119,6 +119,7 @@ public class User {
             default:
                 break;
         }
+<<<<<<< HEAD
     }
 
     public ArrayList<String> getSubscribedTo() {
@@ -138,6 +139,98 @@ public class User {
                         currentName = new StringBuilder("");
                     } else {
                         currentName.append(line.charAt(i));
+=======
+        
+        public void updateProfile() {
+            Scanner in = new Scanner(System.in);
+            String choice;
+            String choice2; 
+            System.out.println("Would you like to set or get user profile data members? (set/get):");
+            choice = in.nextLine();
+            
+            switch(choice) {
+                case "set":
+                    System.out.println("Enter an option to set: " +
+                    "\nUsername"
+                    + "\nReal Name"
+                    + "\nAge"
+                    + "\nBio"
+                    + "\nHometown"
+                    + "\nFavorite Pokemon type"
+                    + "\nPartY Pokemon"
+                    + "\nNumber of Badges");
+                    choice2 = in.nextLine().toLowerCase();
+                    
+                    switch(choice2) {
+                        case "username":
+                            System.out.println("Enter a new username: ");
+                            username = in.nextLine();
+                            setUsername(username);
+                            break;
+                        case "real name":
+                            System.out.println("Enter a new real name: ");
+                            realName = in.nextLine();
+                            setRealName(realName);
+                            break;
+                        case "age":
+                            break;
+                        case "Bio":
+                            break;
+                        case "hometown":
+                            break;
+                        case "favoite type of pokemon":
+                            break;
+                        case "pparty pokemon":
+                            break;
+                        case "number of badges":
+                            System.out.println("Enter a new number of badges for your profile: ");
+                            numOfBadges = in.nextInt();
+                            setBadges(numOfBadges);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case "get":
+                    System.out.println("Enter an option to get: " +
+                    "\nUsername"
+                    + "\nReal Name"
+                    + "\nAge"
+                    + "\nBio"
+                    + "\nHometown"
+                    + "\nFavorite Pokemon type"
+                    + "\nPartY Pokemon"
+                    + "\nNumber of Badges");
+                    choice2 = in.nextLine().toLowerCase();
+                    
+                    switch(choice2) {
+                        case "username":
+                            System.out.println(getUsername());
+                            break;
+                        case "real name":
+                            System.out.println(getRealName());
+                            break;
+                        case "age":
+                            System.out.println(getAge());
+                            break;
+                        case "bio":
+                            System.out.println(getBio());
+                            break;
+                        case "hometown":
+                            System.out.println(getHometown());
+                            break;
+                        case "favoite type of pokemon":
+                            System.out.println(getFavoriteType());
+                            break;
+                        case "party pokemon":
+                            System.out.println(getParty());
+                            break;
+                        case "number of badges":
+                            System.out.println(getBadges());
+                            break;
+                        default:
+                            break;
+>>>>>>> 7135243a58bc1c4130e21cec6c266ff1d2cf0cbf
                     }
                 }
             }
