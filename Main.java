@@ -19,7 +19,7 @@ public class Main {
 
 
 			int selection = input.nextInt();
-			//input.next();
+
 			switch (selection){
 				case 1:
 					String userName;
@@ -30,6 +30,7 @@ public class Main {
 					userPass = input.next();
 					//Add above (plus more? to database/text file
 				case 2:
+					System.out.println("Please log in");
 					System.out.println("Username: ");
 					String username = input.next(); 
 					System.out.println("Password: ");
@@ -53,25 +54,33 @@ public class Main {
 						"7) Logout\n"
 						);
 				int selection2 = input.nextInt();
-				//input.next();
+
 				switch (selection2){
 					case 1:
+						//ToDo: Refresh and display feed
+						System.out.println("Feed updating: ");	
 						break;
 					case 2:
+						String postMessage = input.nextLine();
+						//Store postMessage in text file
 						break;
 					case 3:
 						break;
 					case 4: 
+						System.out.println("Please enter the username of the user you wish to DM: ");
+						String DMuser = input.next();
 						break;
 					case 5:
+						System.out.println("Please enter the username of the user who's profile you wish to view: ");
+						String viewUser = input.next();	
 						break;
 					case 6:
 						break;
 					case 7:
+						System.out.println("Logging out...\n");
 						loggedIn = false;
 
 				}                 
-			//break;
 			}
 		}
 	}
