@@ -47,24 +47,30 @@ public class User {
                     + "\nFavorite Pokemon type"
                     + "\nPartY Pokemon"
                     + "\nNumber of Badges");
-                    choice2 = in.nextLine();
+                    choice2 = in.nextLine().toLowerCase();
                     
                     switch(choice2) {
-                        case "Username":
+                        case "username":
+                            System.out.println("Enter a new username: ");
+                            username = in.nextLine();
+                            setUsername(username);
                             break;
-                        case "Real Name":
+                        case "real name":
+                            System.out.println("Enter a new real name: ");
+                            realName = in.nextLine();
+                            setRealName(realName);
                             break;
-                        case "Age":
+                        case "age":
                             break;
                         case "Bio":
                             break;
-                        case "Hometown":
+                        case "hometown":
                             break;
-                        case "Favoite type of Pokemon":
+                        case "favoite type of pokemon":
                             break;
-                        case "Party Pokemon":
+                        case "pparty pokemon":
                             break;
-                        case "Number of Badges":
+                        case "number of badges":
                             System.out.println("Enter a new number of badges for your profile: ");
                             numOfBadges = in.nextInt();
                             setBadges(numOfBadges);
@@ -83,32 +89,32 @@ public class User {
                     + "\nFavorite Pokemon type"
                     + "\nPartY Pokemon"
                     + "\nNumber of Badges");
-                    choice2 = in.nextLine();
+                    choice2 = in.nextLine().toLowerCase();
                     
                     switch(choice2) {
-                        case "Username":
-                            getUsername();
+                        case "username":
+                            System.out.println(getUsername());
                             break;
-                        case "Real Name":
-                            getRealName();
+                        case "real name":
+                            System.out.println(getRealName());
                             break;
-                        case "Age":
-                            getAge();
+                        case "age":
+                            System.out.println(getAge());
                             break;
-                        case "Bio":
-                            getBio();
+                        case "bio":
+                            System.out.println(getBio());
                             break;
-                        case "Hometown":
-                            getHometown();
+                        case "hometown":
+                            System.out.println(getHometown());
                             break;
-                        case "Favoite type of Pokemon":
-                            getFavoriteType();
+                        case "favoite type of pokemon":
+                            System.out.println(getFavoriteType());
                             break;
-                        case "Party Pokemon":
-                            getParty();
+                        case "party pokemon":
+                            System.out.println(getParty());
                             break;
-                        case "Number of Badges":
-                            getBadges();
+                        case "number of badges":
+                            System.out.println(getBadges());
                             break;
                         default:
                             break;
