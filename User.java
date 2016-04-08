@@ -31,6 +31,33 @@ public class User {
         favType = userInfo[14];
     }
 
+    public ArrayList<String> getSubscribedTo() {
+
+        ArrayList<String> subscribedTo = new ArrayList();
+
+        try (Scanner in = new Scanner(new FileInputStream(this.username + "SubscribesTo.csv"))) {
+
+            while (in.hasNextLine()) {
+
+                String line = in.nextLine();
+                StringBuilder currentName = new StringBuilder("");
+
+                for (int i = 0; i < line.length(); i++) {
+                    if (line.charAt(i) == ',') {
+                        subscribedTo.add(currentName.toString());
+                        currentName = new StringBuilder("");
+                    } else {
+                        currentName.append(line.charAt(i));
+                    }
+                }
+            }
+        }catch (IOException e) {
+        }
+            return subscribedTo;
+        }
+        
+        
+
     public void updateProfile() {
         Scanner in = new Scanner(System.in);
         String choice;
@@ -49,24 +76,30 @@ public class User {
                         + "\nFavorite Pokemon type"
                         + "\nPartY Pokemon"
                         + "\nNumber of Badges");
-                choice2 = in.nextLine();
+                choice2 = in.nextLine().toLowerCase();
 
                 switch (choice2) {
-                    case "Username":
+                    case "username":
+                        System.out.println("Enter a new username: ");
+                        username = in.nextLine();
+                        setUsername(username);
                         break;
-                    case "Real Name":
+                    case "real name":
+                        System.out.println("Enter a new real name: ");
+                        realName = in.nextLine();
+                        setRealName(realName);
                         break;
-                    case "Age":
+                    case "age":
                         break;
                     case "Bio":
                         break;
-                    case "Hometown":
+                    case "hometown":
                         break;
-                    case "Favoite type of Pokemon":
+                    case "favoite type of pokemon":
                         break;
-                    case "Party Pokemon":
+                    case "pparty pokemon":
                         break;
-                    case "Number of Badges":
+                    case "number of badges":
                         System.out.println("Enter a new number of badges for your profile: ");
                         numOfBadges = in.nextInt();
                         setBadges(numOfBadges);
@@ -85,161 +118,42 @@ public class User {
                         + "\nFavorite Pokemon type"
                         + "\nPartY Pokemon"
                         + "\nNumber of Badges");
-                choice2 = in.nextLine();
+                choice2 = in.nextLine().toLowerCase();
 
                 switch (choice2) {
-                    case "Username":
-                        getUsername();
+                    case "username":
+                        System.out.println(getUsername());
                         break;
-                    case "Real Name":
-                        getRealName();
+                    case "real name":
+                        System.out.println(getRealName());
                         break;
-                    case "Age":
-                        getAge();
+                    case "age":
+                        System.out.println(getAge());
                         break;
-                    case "Bio":
-                        getBio();
+                    case "bio":
+                        System.out.println(getBio());
                         break;
-                    case "Hometown":
-                        getHometown();
+                    case "hometown":
+                        System.out.println(getHometown());
                         break;
-                    case "Favoite type of Pokemon":
-                        getFavoriteType();
+                    case "favoite type of pokemon":
+                        System.out.println(getFavoriteType());
                         break;
-                    case "Party Pokemon":
-                        getParty();
+                    case "party pokemon":
+                        System.out.println(getParty());
                         break;
-                    case "Number of Badges":
-                        getBadges();
+                    case "number of badges":
+                        System.out.println(getBadges());
                         break;
                     default:
                         break;
                 }
-                break;
-            default:
-                break;
         }
-<<<<<<< HEAD
-    }
-
-    public ArrayList<String> getSubscribedTo() {
-
-        ArrayList<String> subscribedTo = new ArrayList();
-
-        try (Scanner in = new Scanner(new FileInputStream(this.username + "SubscribesTo.csv"))) {
-
-            while (in.hasNextLine()) {
-
-                String line = in.nextLine();
-                StringBuilder currentName = new StringBuilder("");
-
-                for (int i = 0; i < line.length(); i++) {
-                    if (line.charAt(i) == ',') {
-                        subscribedTo.add(currentName.toString());
-                        currentName = new StringBuilder("");
-                    } else {
-                        currentName.append(line.charAt(i));
-=======
-        
-        public void updateProfile() {
-            Scanner in = new Scanner(System.in);
-            String choice;
-            String choice2; 
-            System.out.println("Would you like to set or get user profile data members? (set/get):");
-            choice = in.nextLine();
-            
-            switch(choice) {
-                case "set":
-                    System.out.println("Enter an option to set: " +
-                    "\nUsername"
-                    + "\nReal Name"
-                    + "\nAge"
-                    + "\nBio"
-                    + "\nHometown"
-                    + "\nFavorite Pokemon type"
-                    + "\nPartY Pokemon"
-                    + "\nNumber of Badges");
-                    choice2 = in.nextLine().toLowerCase();
-                    
-                    switch(choice2) {
-                        case "username":
-                            System.out.println("Enter a new username: ");
-                            username = in.nextLine();
-                            setUsername(username);
-                            break;
-                        case "real name":
-                            System.out.println("Enter a new real name: ");
-                            realName = in.nextLine();
-                            setRealName(realName);
-                            break;
-                        case "age":
-                            break;
-                        case "Bio":
-                            break;
-                        case "hometown":
-                            break;
-                        case "favoite type of pokemon":
-                            break;
-                        case "pparty pokemon":
-                            break;
-                        case "number of badges":
-                            System.out.println("Enter a new number of badges for your profile: ");
-                            numOfBadges = in.nextInt();
-                            setBadges(numOfBadges);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                case "get":
-                    System.out.println("Enter an option to get: " +
-                    "\nUsername"
-                    + "\nReal Name"
-                    + "\nAge"
-                    + "\nBio"
-                    + "\nHometown"
-                    + "\nFavorite Pokemon type"
-                    + "\nPartY Pokemon"
-                    + "\nNumber of Badges");
-                    choice2 = in.nextLine().toLowerCase();
-                    
-                    switch(choice2) {
-                        case "username":
-                            System.out.println(getUsername());
-                            break;
-                        case "real name":
-                            System.out.println(getRealName());
-                            break;
-                        case "age":
-                            System.out.println(getAge());
-                            break;
-                        case "bio":
-                            System.out.println(getBio());
-                            break;
-                        case "hometown":
-                            System.out.println(getHometown());
-                            break;
-                        case "favoite type of pokemon":
-                            System.out.println(getFavoriteType());
-                            break;
-                        case "party pokemon":
-                            System.out.println(getParty());
-                            break;
-                        case "number of badges":
-                            System.out.println(getBadges());
-                            break;
-                        default:
-                            break;
->>>>>>> 7135243a58bc1c4130e21cec6c266ff1d2cf0cbf
-                    }
-                }
-            }
-        } catch (IOException e) {
-        }
-        return subscribedTo;
     }
 
     //returns boolean indicating whether this is subscribed to the given username
+        
+    
     public boolean isSubscribedTo(String username) {
         boolean isSubscribed = false;
         for (String s : getSubscribedTo()) {
@@ -248,12 +162,12 @@ public class User {
                 break;
             }
         }
-        return isSubscribed;
-    }
+    return isSubscribed ;
+}
 
         //checks to see if the given username is a valid username and that the given username is not already subscribes to
-    //if so it appends the username to this user's SubscribesTo.csv
-    public void subscribeTo(String username) {
+//if so it appends the username to this user's SubscribesTo.csv
+public void subscribeTo(String username) {
         if (UserManager.isUser(username) && !isSubscribedTo(username)) {
             try (FileWriter fw = new FileWriter(this.username + "SubscribesTo.csv", true)) {
                 fw.write(username + ",");
