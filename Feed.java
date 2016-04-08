@@ -25,15 +25,15 @@ public class Feed {
 	private void chooseSort(int option){
 		Scanner in = new Scanner(System.in);
 		switch(option){
-			case 1: System.out.println("please enter the hashtag you wish to search for");
+			case 1: System.out.println("Please enter the hashtag you wish to search for");
 				String hash = in.nextLine();
 				updateHash(hash);
 				break;
-			case 2: System.out.println("please enter the username whose posts you wish to view");
+			case 2: System.out.println("Please enter the username whose posts you wish to view");
 				String user = in.nextLine();
 				updateUser(user);
 				break;
-			case 3: System.out.println("please enter your location");
+			case 3: System.out.println("Please enter your location");
 				String location = in.nextLine();
 				updateLoca(location);
 				break;
@@ -134,8 +134,10 @@ public class Feed {
 		}
 	}
 
-	private void insertDM(DirectMessage dm){
-		// TODO: figure out what the heck to do with DM's.
+	private void displayFeed(){
+		for(int i = 0; i < length; i++){
+			Post read = feed[i];
+			System.out.printf("%s at %s:\n%s\nLocated at: %s.\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
+		}
 	}
-	private void displayFeed(){}
 }
