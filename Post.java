@@ -19,8 +19,8 @@ public class Post {
         }
   */      
 
-        public Post(int postID, int privacy, String user, String contents,  //constructor shouldn't have IO
-			String location, int numHash, String hashtags[]){   //IO is handled in Main
+        public Post(int postID, Date date, int privacy, String user, String contents,  //constructor shouldn't have IO
+			String location, String hashtags[]){   //IO is handled in Main
 			setPostID(postID);
 			setPrivacy(privacy);
 			setAuthor(user);
@@ -48,7 +48,7 @@ public class Post {
             return this.privacyLevel;
         }
         
-        public String getPostConents() {
+        public String getPostContents() {
             return this.postContents;
         }
         
