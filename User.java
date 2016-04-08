@@ -11,8 +11,8 @@ public class User {
     private String favType;
     private String hometown;
     private String favPoke;
-    private int age;
-    private int numOfBadges;
+    private String age;
+    private String numOfBadges;
     private boolean admin = false;
     private String[] partyPokemon;
     private String[] subscribees;
@@ -22,9 +22,9 @@ public class User {
         username = userInfo[0];
         password = userInfo[1];
         realName = userInfo[2];
-        age = Integer.parseInt(userInfo[3]);
+        age = (userInfo[3]);
         hometown = userInfo[4];
-        numOfBadges = Integer.parseInt(userInfo[5]);
+        numOfBadges = (userInfo[5]);
         favPoke = userInfo[6];
         partyPokemon = Arrays.copyOfRange(userInfo, 7, 13);
         bio = userInfo[13];
@@ -47,7 +47,7 @@ public class User {
                         + "\nBio"
                         + "\nHometown"
                         + "\nFavorite Pokemon type"
-                        + "\nPartY Pokemon"
+                        + "\nParty Pokemon"
                         + "\nNumber of Badges");
                 choice2 = in.nextLine().toLowerCase();
 
@@ -64,7 +64,7 @@ public class User {
                         break;
                     case "age":
                         System.out.println("Enter a new age: ");
-                        age = in.nextInt();
+                        age = in.nextLine();
                         setAge(age);
                         break;
                     case "bio":
@@ -85,19 +85,20 @@ public class User {
                     case "party pokemon":
                         for(int i=0; i<6; i++) {
                             System.out.println("Add a new Pokemon to your party? (y/n): ");
-                            String poke = " ";
-                            if(poke.equals("y"))
+                            String pokemon = in.nextLine();
+                            if(pokemon.equals("y"))
                                 partyPokemon[i] = in.nextLine();
                             else {
                                 for(int j=0; j<i; j++)
                                     partyPokemon[j] = " ";
+                                break;
                             }    
                         }
                         setParty(partyPokemon);
                         break;
                     case "number of badges":
                         System.out.println("Enter a new number of badges for your profile: ");
-                        numOfBadges = in.nextInt();
+                        numOfBadges = in.nextLine();
                         setBadges(numOfBadges);
                         break;
                     default:
@@ -226,7 +227,7 @@ public class User {
         this.realName = realName;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -246,7 +247,7 @@ public class User {
         this.partyPokemon = partyPokemon.clone(); //different method to copy array?
     }
 
-    public void setBadges(int numOfBadges) {
+    public void setBadges(String numOfBadges) {
         this.numOfBadges = numOfBadges;
     }
 
@@ -272,7 +273,7 @@ public class User {
         return realName;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
@@ -296,7 +297,7 @@ public class User {
         return partyPokemon;
     }
 
-    public int getBadges() {
+    public String getBadges() {
         return numOfBadges;
     }
 }
