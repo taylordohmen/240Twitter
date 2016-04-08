@@ -6,6 +6,8 @@ public class Feed {
 	private FileInputStream database;
 	private Scanner storage;
 	private Post posts[];
+	// expecting that the user is prompted asking how many posts to display, with a default value of 20 being passed.
+	// also expecting that user has been prompted with the options for sorting the post, passed to constructor as an int.
 	public Feed(int option, int len){
 		try{
 			database = new FileInputStream("posts.txt");
@@ -29,8 +31,8 @@ public class Feed {
 				updateUser(user);
 				break;
 			case 3: System.out.println("please enter your location");
-				String loca = in.nextLine();
-				updateLoca(loca);
+				String location = in.nextLine();
+				updateLoca(location);
 				break;
 			default: updateDate();
 		}
@@ -38,7 +40,20 @@ public class Feed {
 	private void updateDate(){
 		for(int i = 0; i< length; i++){
 			String post[] = storage.nextLine().split(",");
-			posts[i] = new Post();//post); // TODO: What goes in the post constructor?
+			int id = post[0];
+			Date date = new Date(post[1]);
+			int privacy = post[2];
+			String user = post[3];
+			String contents = post[4];
+			String location = post[5];
+			int numHash = integer.parseInt(post[6]);
+			String hashtags[] = new String[numHash];
+			if(numHash > 0){
+				for(int j = 7, j < (7+numHash); j++){
+					hashtags[j] = post[j];
+				}
+			}
+			posts[i] = new Post(int postID, Date date, int privacy, String user, String contents, String location, int numHash, String hashtags[]);
 		}
 	}
 	private void updateHash(String hash){}

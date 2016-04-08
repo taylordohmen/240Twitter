@@ -18,8 +18,10 @@ public class Post {
             //postID++;
         }
   */      
-        public Post(int privacy, String user, String contents,  //constructor shouldn't have IO
-			String location, int numHash, String[] hashtags){   //IO is handled in Main
+
+        public Post(int postID, int privacy, String user, String contents,  //constructor shouldn't have IO
+			String location, int numHash, String hashtags[]){   //IO is handled in Main
+			setPostID(postID);
 			setPrivacy(privacy);
 			setAuthor(user);
 			setContents(contents);
@@ -53,6 +55,10 @@ public class Post {
         
         public Date getDate() {
             return date;
+        }
+        
+        void setPostID(int i) {
+            this.postID = i;
         }
         
         void setPrivacy(int p) {
