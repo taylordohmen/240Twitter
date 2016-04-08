@@ -93,18 +93,38 @@ public class Feed {
 				j++;
 			}
 		}
+		try(Scanner readMons = new Scanner(new FileInputStream("pokemon.csv"))){
+			String pokemonList[] = readMons.nextLine().split(",");
+			for(String pokemon : pokemonList){
+				if(hash == pokemon){
+					pokemonSearch(pokemon);
+				}
+			}
+		}catch(FileNotFoundException e){
+			System.out.println("pokemon.csv not found, please add it to the working directory");
+		}
 	}
 
-	private void pokemonSearch(String pokemon){
-		int j = 0;
+	private String pokemonSearch(String pokemon){
+		int count = 0;
+		int maxCount = count;
+		String chosen = "The pokemon you searched for has not been found yet!\nWill you be the first?";
 		for(int i = 0; i < length; i++){
-			while(j < posts.size()){
-				if (posts.get(j).hasHashtag(pokemon)){
-					feed[i] = posts.get(j);
-					break;
+			String check = feed[i].getLocationTag();
+			for(int j = i+1; j < length; j++){
+				if(check == feed[j].getLocationTag()){
+					count++;
 				}
-				j++;
 			}
+			if(count > maxCount){
+				maxCount = count;
+				chosen = check;
+			}
+		}
+		if(maxCount == 0){
+			return chosen;
+		} else {
+			return "The pokemon you're searching for is most common found here: ".concat(chosen);
 		}
 	}
 
