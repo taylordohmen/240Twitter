@@ -1,7 +1,7 @@
 /fetchd/nbproject/private/
 
 # Created by https://www.gitignore.io/api/java
-
+*.swp
 ### Java ###
 *.class
 
