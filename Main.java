@@ -58,14 +58,17 @@ public class Main {
 				switch (selection2){
 					case 1:
 						//ToDo: Refresh and display feed
-						System.out.println("Feed updating: ");	
+						System.out.println("Feed updating: \n");	
 						break;
 					case 2:
 						input.nextLine();  // clear newline out of the buffer
-						System.out.println("Please enter your post contents:");
+						System.out.println("Where are you?\n");
+						String pLocation = input.nextLine(); //test against location list
+						System.out.println("Please enter your post contents: \n");
 						String postMessage = input.nextLine();
-						// System.out.printf("Debug: postMessage contains %s\n", postMessage);
-						//Store postMessage in text file
+						System.out.printf("Debug: postMessage contains %s\n", postMessage);
+						System.out.printf("Location is: %s\n", pLocation);
+						//Store post in text file
 						break;
 					case 3:
 						break;
@@ -75,9 +78,12 @@ public class Main {
 						break;
 					case 5:
 						System.out.println("Please enter the username of the user who's profile you wish to view: ");
-						String viewUser = input.next();	
+						String viewUser = input.next();
+						//Displays user profile information
+						//Option to subscribe goes in here	
 						break;
 					case 6:
+						//Display profile of user currently logged in, with ability to edit information
 						break;
 					case 7:
 						System.out.println("Logging out...\n");
