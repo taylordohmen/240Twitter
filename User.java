@@ -31,33 +31,6 @@ public class User {
         favType = userInfo[14];
     }
 
-    public ArrayList<String> getSubscribedTo() {
-
-        ArrayList<String> subscribedTo = new ArrayList();
-
-        try (Scanner in = new Scanner(new FileInputStream(this.username + "SubscribesTo.csv"))) {
-
-            while (in.hasNextLine()) {
-
-                String line = in.nextLine();
-                StringBuilder currentName = new StringBuilder("");
-
-                for (int i = 0; i < line.length(); i++) {
-                    if (line.charAt(i) == ',') {
-                        subscribedTo.add(currentName.toString());
-                        currentName = new StringBuilder("");
-                    } else {
-                        currentName.append(line.charAt(i));
-                    }
-                }
-            }
-        }catch (IOException e) {
-        }
-            return subscribedTo;
-        }
-        
-        
-
     public void updateProfile() {
         Scanner in = new Scanner(System.in);
         String choice;
@@ -194,6 +167,31 @@ public void subscribeTo(String username) {
             } catch (IOException e) {
             }
         }
+    }
+    
+    public ArrayList<String> getSubscribedTo() {
+
+        ArrayList<String> subscribedTo = new ArrayList();
+
+        try (Scanner in = new Scanner(new FileInputStream(this.username + "SubscribesTo.csv"))) {
+
+            while (in.hasNextLine()) {
+
+                String line = in.nextLine();
+                StringBuilder currentName = new StringBuilder("");
+
+                for (int i = 0; i < line.length(); i++) {
+                    if (line.charAt(i) == ',') {
+                        subscribedTo.add(currentName.toString());
+                        currentName = new StringBuilder("");
+                    } else {
+                        currentName.append(line.charAt(i));
+                    }
+                }
+            }
+        }catch (IOException e) {
+        }
+            return subscribedTo;
     }
 
     //setters
