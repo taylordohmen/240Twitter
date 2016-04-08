@@ -47,7 +47,7 @@ public class User {
                         + "\nBio"
                         + "\nHometown"
                         + "\nFavorite Pokemon type"
-                        + "\nPartY Pokemon"
+                        + "\nParty Pokemon"
                         + "\nNumber of Badges");
                 choice2 = in.nextLine().toLowerCase();
 
@@ -85,12 +85,13 @@ public class User {
                     case "party pokemon":
                         for(int i=0; i<6; i++) {
                             System.out.println("Add a new Pokemon to your party? (y/n): ");
-                            String poke = " ";
-                            if(poke.equals("y"))
+                            String pokemon = in.nextLine();
+                            if(pokemon.equals("y"))
                                 partyPokemon[i] = in.nextLine();
                             else {
                                 for(int j=0; j<i; j++)
                                     partyPokemon[j] = " ";
+                                break;
                             }    
                         }
                         setParty(partyPokemon);
