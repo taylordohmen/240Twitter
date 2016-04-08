@@ -61,7 +61,10 @@ public class Main {
 						System.out.println("Feed updating: ");	
 						break;
 					case 2:
+						input.nextLine();  // clear newline out of the buffer
+						System.out.println("Please enter your post contents:");
 						String postMessage = input.nextLine();
+						// System.out.printf("Debug: postMessage contains %s\n", postMessage);
 						//Store postMessage in text file
 						break;
 					case 3:
