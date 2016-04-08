@@ -58,7 +58,7 @@ public class UserManager {
      */
     //right now this checks the database to make sure that the username/password combination is valid
     //and contains a boolean indicating such
-    public static void loginUser(String username, String password) {
+    public static boolean loginUser(String username, String password) {
         ArrayList<User> allUsers = getAllUsers();
         boolean valid = false;
         for (User u : allUsers) {
@@ -68,6 +68,7 @@ public class UserManager {
                 }
             }
         }
+        return valid;
     }
 
     //what should this method do?
@@ -118,9 +119,9 @@ public class UserManager {
         userInfo[0] = u.getUsername();
         userInfo[1] = u.getPassword();
         userInfo[2] = u.getRealName();
-        userInfo[3] = Integer.toString(u.getAge());
+        userInfo[3] = u.getAge();
         userInfo[4] = u.getHometown();
-        userInfo[5] = Integer.toString(u.getBadges());
+        userInfo[5] = u.getBadges();
         userInfo[6] = u.getFavPoke();
         for (int i = 7; i < 13; i++) {
             userInfo[i] = u.getParty()[i - 7];

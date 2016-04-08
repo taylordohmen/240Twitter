@@ -29,6 +29,13 @@ public class Main {
 					System.out.println("Please enter a password");
 					userPass = input.next();
 					//Add above (plus more? to database/text file
+                                        String[] userInfo = new String[15];
+                                        userInfo[0] = userName;
+                                        userInfo[1] = userPass;
+                                        for (int i = 2; i < userInfo.length; i++) {
+                                            userInfo[i] = "";
+                                        }
+                                        UserManager.registerUser(userInfo);
 				case 2:
 					System.out.println("Please log in");
 					System.out.println("Username: ");
@@ -36,7 +43,7 @@ public class Main {
 					System.out.println("Password: ");
 					String password = input.next();
 					//if username and password matches then
-					loggedIn = true;
+                                        loggedIn = UserManager.loginUser(username, password);
 					break;
 				case 3:
 					System.exit(0);
