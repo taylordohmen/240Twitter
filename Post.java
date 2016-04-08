@@ -29,6 +29,17 @@ public class Post {
 			setHashtags(hashtags);
 		}
         
+        public boolean hasHashtag(String hashtag) {
+            boolean has = false;
+            for (String s : this.hashtags) {
+                if (hashtag.equals(s)) {
+                    has = true;
+                    break;
+                }
+            }
+            return has;
+        }
+        
         public int getPostId() {
             return this.postID;
         }
