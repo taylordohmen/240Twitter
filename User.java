@@ -83,16 +83,17 @@ public class User {
                         setFavoriteType(favType);
                         break;
                     case "party pokemon":
-                        for(int i=0; i<6; i++) {
+                        for (int i = 0; i < 6; i++) {
                             System.out.println("Add a new Pokemon to your party? (y/n): ");
                             String pokemon = in.nextLine();
-                            if(pokemon.equals("y"))
+                            if (pokemon.equals("y")) {
                                 partyPokemon[i] = in.nextLine();
-                            else {
-                                for(int j=0; j<i; j++)
+                            } else {
+                                for (int j = 0; j < i; j++) {
                                     partyPokemon[j] = " ";
+                                }
                                 break;
-                            }    
+                            }
                         }
                         setParty(partyPokemon);
                         break;
@@ -149,8 +150,6 @@ public class User {
     }
 
     //returns boolean indicating whether this is subscribed to the given username
-        
-    
     public boolean isSubscribedTo(String username) {
         boolean isSubscribed = false;
         for (String s : getSubscribedTo()) {
@@ -159,11 +158,11 @@ public class User {
                 break;
             }
         }
-    return isSubscribed ;
-}
+        return isSubscribed;
+    }
 
         //checks to see if the given username is a valid username and that the given username is not already subscribes to
-        //if so it appends the username to this user's SubscribesTo.csv
+    //if so it appends the username to this user's SubscribesTo.csv
     public void subscribeTo(String username) {
         if (UserManager.isUser(username) && !isSubscribedTo(username)) {
             try (FileWriter fw = new FileWriter(this.username + "SubscribesTo.csv", true)) {
@@ -192,7 +191,9 @@ public class User {
             }
         }
     }
-    
+
+    //returns an ArrayList of strings which are the usernames of of all the users the designated user is subscribed to
+    //assumes a SubscribesTo.csv file already exists for the designated user
     public ArrayList<String> getSubscribedTo() {
 
         ArrayList<String> subscribedTo = new ArrayList();
@@ -213,9 +214,9 @@ public class User {
                     }
                 }
             }
-        }catch (IOException e) {
+        } catch (IOException e) {
         }
-            return subscribedTo;
+        return subscribedTo;
     }
 
     //setters
@@ -260,7 +261,6 @@ public class User {
     }
 
     //getters
-
     public String getUsername() {
         return username;
     }

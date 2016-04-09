@@ -47,17 +47,7 @@ public class UserManager {
         }
     }
 
-
-    /*
-     Things to think about:
-     -how to prevent two people from logging on to the same profile at the same time?
-     -Which of the following should this method return?
-     1 - a boolean indicating whether the username/password combo is valid
-     2 - a User object containing the data related to the username/password combo
-     (If this is the case then the User() constructor needs to be written)
-     */
-    //right now this checks the database to make sure that the username/password combination is valid
-    //and contains a boolean indicating such
+    //returns true if the username password combo is valid
     public static boolean loginUser(String username, String password) {
         ArrayList<User> allUsers = getAllUsers();
         boolean valid = false;
@@ -69,12 +59,6 @@ public class UserManager {
             }
         }
         return valid;
-    }
-
-    //what should this method do?
-    //will there be a list of logged on users in the main method?
-    public static void logoutUser(String username) {
-
     }
 
     //gets all user information for each user registered with the system
@@ -130,11 +114,8 @@ public class UserManager {
         userInfo[14] = u.getFavoriteType();
         return userInfo;
     }
-
-    //returns an ArrayList of strings which are the usernames of of all the users the designated user is subscribed to
-    //assumes a SubscribesTo.csv file already exists for the designated user
-
     
+    //returns true if the user is on file
     public static boolean isUser(String username) {
         ArrayList<User> allUsers = getAllUsers();
         boolean isUser = false;
