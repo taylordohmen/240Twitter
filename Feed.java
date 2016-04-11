@@ -45,7 +45,7 @@ public class Feed {
 		while(storage.hasNextLine()){
 			String post[] = storage.nextLine().split(",");
 			int id = Integer.parseInt(post[0]);
-			Date date = new Date(post[1]);
+			Date date = new Date(Integer.parseInt(post[1]));
 			int privacy = Integer.parseInt(post[2]);
 			String user = post[3];
 			String contents = post[4];
