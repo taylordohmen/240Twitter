@@ -15,8 +15,7 @@ public class Main {
 			contents.concat(in.next());
 		}
 		String location = "";
-		String locations[] = {};
-		getLocations(locations);
+		String locations[] = getLocations();
 		do{
 			System.out.println("Please enter your valid location:");
 			//debug:
