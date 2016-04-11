@@ -19,6 +19,10 @@ public class Main {
 		do{
 			System.out.println("Please enter your valid location:");
 			locations = getLocations();
+			//debug:
+			for(int i=0; i < locations.length; i++){
+				System.out.println(locations[i]);
+			}
 			location = in.nextLine();
 		}while(!contains(location, locations));
 		System.out.println("Please enter the contents of your post:");
