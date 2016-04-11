@@ -3,26 +3,27 @@ import java.util.*;
 
 public class Post {
 
-    private int postID; //how will this be stored and incremented?
-    private int privacyLevel; //how is this determined and added to the post? Is 1 admin, 2 normal, 3 dm?
-    private String postContents;
-    private String postAuthor;
-    private String locationTag;
-    private String[] hashtags; //need to search through postContents for these and keep them separate
-    private Date date;
+    private final int postID; //how will this be stored and incremented?
+    private final int privacyLevel; //how is this determined and added to the post? Is 1 admin, 2 normal, 3 dm?
+    private final String postContents;
+    private final String postAuthor;
+    private final String locationTag;
+    private final String[] hashtags;
+    private final Date date;
 
-    public Post(int postID, Date date, int privacy, String user, String contents, //constructor shouldn't have IO
-        String location, String hashtags[]) {   //IO is handled in Main
-        setPostID(postID);
-        setPrivacy(privacy);
-        setAuthor(user);
-        setContents(contents);
-        setLocation(location);
-        setHashtags(hashtags);
-        writePost();
+    public Post(int pID, Date date, int privacy, String user, String contents, //constructor shouldn't have IO
+        String location, String hashes[]) {   //IO is handled in Main
+        postID = pID;
+        this.date = date;
+        privacyLevel = privacy;
+        postAuthor = user;
+        postContents = contents;
+        locationTag = location;
+        hashtags = hashes;
+        writePostToFile();
     }
     
-    private void writePost() {
+    private void writePostToFile() {
         try (FileWriter fw = new FileWriter("posts.csv", true)) {
             fw.write(this.postID + ",");
             //date in milliseconds since whenever
@@ -104,29 +105,5 @@ public class Post {
 
     public Date getDate() {
         return date;
-    }
-
-    void setPostID(int i) {
-        this.postID = i;
-    }
-
-    void setPrivacy(int p) {
-        this.privacyLevel = p;
-    }
-
-    void setAuthor(String u) {
-        this.postAuthor = u;
-    }
-
-    void setContents(String c) {
-        this.postContents = c;
-    }
-
-    void setLocation(String l) {
-        this.locationTag = l;
-    }
-
-    void setHashtags(String[] h) {
-        this.hashtags = h;
     }
 }
