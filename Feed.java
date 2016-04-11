@@ -112,7 +112,7 @@ public class Feed {
 		for(int i = 0; i < length; i++){
 			String check = feed[i].getLocationTag();
 			for(int j = i+1; j < length; j++){
-				if(check == feed[j].getLocationTag()){
+				if(check.equals(feed[j].getLocationTag())){
 					count++;
 				}
 			}
@@ -145,7 +145,7 @@ public class Feed {
 		int j = 0;
 		for(int i = 0; i < length; i++){
 			while(j < posts.size()){
-				if (loca == posts.get(j).getLocationTag()){
+				if (loca.equals(posts.get(j).getLocationTag())){
 					feed[i] = posts.get(j);
 					break;
 				}
