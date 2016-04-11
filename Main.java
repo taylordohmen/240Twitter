@@ -150,13 +150,13 @@ public class Main {
 	
 	
 	//returns string array containing all possible location tags
-	static void getLocations(String locations[]) {
+	static String[] getLocations() {
 		String location = "";
 		try (Scanner in = new Scanner(new FileInputStream("locations.csv"))) {
 			location = in.nextLine();
 		} catch (IOException e) {
 		}
-		locations = location.split(",");
+		return location.split(",");
 	}
 	
 	//returns string array containing all possible pokemon
