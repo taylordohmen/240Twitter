@@ -15,10 +15,10 @@ public class Main {
 			contents.concat(in.next());
 		}
 		String location = "";
-		String locations[];
+		String locations[] = {};
+		getLocations(locations);
 		do{
 			System.out.println("Please enter your valid location:");
-			locations = getLocations();
 			//debug:
 			for(int i=0; i < locations.length; i++){
 				System.out.println(locations[i]);
@@ -150,13 +150,13 @@ public class Main {
 	
 	
 	//returns string array containing all possible location tags
-	static String[] getLocations() {
-		String locations = "";
+	static void getLocations(String locations[]) {
+		String location = "";
 		try (Scanner in = new Scanner(new FileInputStream("locations.csv"))) {
-			locations = in.nextLine();
+			location = in.nextLine();
 		} catch (IOException e) {
 		}
-		return locations.split(",");
+		locations = location.split(",");
 	}
 	
 	//returns string array containing all possible pokemon
