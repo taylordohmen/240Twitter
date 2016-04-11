@@ -24,6 +24,7 @@ public class Main {
 			}
 			location = in.nextLine();
 		}while(!contains(location, locations));
+                
 		System.out.println("Please enter the contents of your post:");
 		contents.concat(" ".concat(in.nextLine()));
 		ArrayList<String> hashtags = new ArrayList();
@@ -31,11 +32,11 @@ public class Main {
 		do{
 			System.out.println("Please enter the hashtags you wish to include, or enter 'done' when you are finished.");
 			hash = in.next();
-			if(hash != "done"){
+			if(!hash.equals("done")){
 				contents.concat(" #".concat(hash));
 				hashtags.add(hash);
 			}
-		}while(hash != "done");
+		}while(!hash.equals("done"));
 		Date date = new Date();
 		String hashArray[] = new String[hashtags.size()];
 		convertToArray(hashtags, hashArray);
@@ -50,7 +51,7 @@ public class Main {
 
 	public static boolean contains(String location, String locations[]){
 		for(int i = 0; i < locations.length; i++){
-			if(location == locations[i]){
+			if(location.equals(locations[i])){
 				return true;
 			}
 		}
@@ -120,8 +121,6 @@ public class Main {
 						break;
 					case 2:
 						input.nextLine();  // clear newline out of the buffer
-						System.out.println("Please enter your post contents:");
-						String postMessage = input.nextLine();
                                                 writePost(userName);
 						// System.out.printf("Debug: postMessage contains %s\n", postMessage);
 						//Store postMessage in text file

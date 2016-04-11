@@ -33,7 +33,7 @@ public class Post {
             fw.write(this.postAuthor + ",");
             fw.write(this.postContents + ",");
             fw.write(this.locationTag + ",");
-            fw.write(this.numHashtags() + ",");
+            fw.write(this.hashtags.length + ",");
             for (String s : this.hashtags) {
                 fw.write(s + ",");
             }
@@ -42,15 +42,15 @@ public class Post {
         }
     }
     
-    private int numHashtags() {
-        int numHashtags = 0;
-        for (String s : this.postContents.split(" ")) {
-            if (s.charAt(0) == '#' && s.length() > 1) {
-                numHashtags++;
-            }
-        }
-        return numHashtags;
-    }
+//    private int numHashtags() {
+//        int numHashtags = 0;
+//        for (String s : this.postContents.split(" ")) {
+//            if (s.charAt(0) == '#' && s.length() > 1) {
+//                numHashtags++;
+//            }
+//        }
+//        return numHashtags;
+//    }
 
     public boolean hasHashtag(String hashtag) {
         boolean has = false;
