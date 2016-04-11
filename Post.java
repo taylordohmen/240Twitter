@@ -40,6 +40,22 @@ public class Post {
             return has;
         }
         
+        public ArrayList<User> postMentions () {
+            ArrayList<User> mentions = new ArrayList();
+            String[] words = this.postContents.split(" ");
+            for (String s : words) {
+                if (s.charAt(0) == '@' && UserManager.isUser(s.substring(1))) {
+                    for (User u : UserManager.getAllUsers()) {
+                        if (u.getUsername().equals(s.substring(1))) {
+                            mentions.add(u);
+                            break;
+                        }
+                    }
+                }
+            }
+            return mentions;
+        }
+        
         public int getPostId() {
             return this.postID;
         }
