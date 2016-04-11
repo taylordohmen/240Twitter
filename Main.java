@@ -56,7 +56,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		final Scanner input = new Scanner(System.in);
-		String userName;
+		String userName = "";
 		boolean loggedIn = false;
 		while (!loggedIn) {
 			System.out.println("Welcome to Fetch'd!");
@@ -81,7 +81,9 @@ public class Main {
 					for (int i = 2; i < userInfo.length; i++) {
 						userInfo[i] = "";
 					}
-					UserManager.registerUser(userInfo);
+					if (!UserManager.registerUser(userInfo)) {
+                                            break;
+                                        }
 				case 2:
 					System.out.println("Please log in");
 					System.out.println("Username: ");
@@ -117,6 +119,7 @@ public class Main {
 						input.nextLine();  // clear newline out of the buffer
 						System.out.println("Please enter your post contents:");
 						String postMessage = input.nextLine();
+                                                writePost(userName);
 						// System.out.printf("Debug: postMessage contains %s\n", postMessage);
 						//Store postMessage in text file
 						break;
