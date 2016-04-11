@@ -161,7 +161,7 @@ public class User {
         return isSubscribed;
     }
 
-        //checks to see if the given username is a valid username and that the given username is not already subscribes to
+    //checks to see if the given username is a valid username and that the given username is not already subscribes to
     //if so it appends the username to this user's SubscribesTo.csv
     public void subscribeTo(String username) {
         if (UserManager.isUser(username) && !isSubscribedTo(username)) {
