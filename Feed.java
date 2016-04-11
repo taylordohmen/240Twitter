@@ -10,7 +10,7 @@ public class Feed {
 	// also expecting that user has been prompted with the options for sorting the post, passed to constructor as an int.
 
 	public Feed(int option, int len, User crntUsr){
-		try(Scanner storage = new Scanner(new FileInputStream("posts.txt"))){
+		try(Scanner storage = new Scanner(new FileInputStream("posts.csv"))){
 			currentUser = crntUsr;
 			length = len;
 			posts = new ArrayList();

@@ -117,7 +117,16 @@ public class Main {
 				switch (selection2) {
 					case 1:
 						//ToDo: Refresh and display feed
+						int length = 20;
+						System.out.println("How many posts do you want in your feed?");
+						length = input.nextInt();
+						input.nextLine();
+						int option = 0;
+						System.out.println("How would you like to organize your feed?\n1 - hashtag; 2 - username; 3 - location");
+						option = input.nextInt();
+						input.nextLine();
 						System.out.println("Feed updating: ");
+						Feed feed = new Feed(option, length, UserManager.getUser(userName));
 						break;
 					case 2:
 						input.nextLine();  // clear newline out of the buffer
