@@ -131,7 +131,7 @@ public class UserManager {
         return isUser;
     }
     
-    public User getUser(String username) {
+    public static User getUser(String username) {
         User user = null;
         ArrayList<User> allUsers = getAllUsers();
         for (User u : allUsers) {
