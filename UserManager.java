@@ -9,7 +9,8 @@ public class UserManager {
     //checks database for new username
     //if it does not find it, it
     //appends information for new user at the end of the file
-    public static void registerUser(String[] userInfo) {
+    public static boolean registerUser(String[] userInfo) {
+        boolean success = false;
         ArrayList<User> allUsers = getAllUsers();
         if (uniqueUsername(userInfo[0], allUsers)) {
             try (FileWriter fw = new FileWriter("UserInfo.csv", true)) {
@@ -19,10 +20,12 @@ public class UserManager {
                 fw.write("\n");
             } catch (IOException e) {
             }
+            createSubscribesToFile(userInfo[0]);
+            success = true;
         } else {
             System.out.println("That username is already taken");
         }
-        createSubscribesToFile(userInfo[0]);
+        return success;
     }
 
     //helper function for registerUser()
@@ -114,7 +117,7 @@ public class UserManager {
         userInfo[14] = u.getFavoriteType();
         return userInfo;
     }
-    
+
     //returns true if the user is on file
     public static boolean isUser(String username) {
         ArrayList<User> allUsers = getAllUsers();
@@ -126,5 +129,17 @@ public class UserManager {
             }
         }
         return isUser;
+    }
+    
+    public static User getUser(String username) {
+        User user = null;
+        ArrayList<User> allUsers = getAllUsers();
+        for (User u : allUsers) {
+            if (username.equals(u.getUsername())) {
+                user = u;
+                break;
+            }
+        }
+        return user;
     }
 }
