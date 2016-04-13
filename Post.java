@@ -104,6 +104,6 @@ public class Post {
     }
 
     public Date getDate() {
-        return date;
+        return this.date;
     }
 }
