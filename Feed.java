@@ -5,7 +5,7 @@ public class Feed {
 	private User currentUser;
 	private int length;
 	private ArrayList<Post> posts;
-	private Post feed[] = new Post[length];
+	private Post feed[];
 	// expecting that the user is prompted asking how many posts to display, with a default value of 20 being passed.
 	// also expecting that user has been prompted with the options for sorting the post, passed to constructor as an int.
 
@@ -13,6 +13,7 @@ public class Feed {
 		try(Scanner storage = new Scanner(new FileInputStream("posts.csv"))){
 			currentUser = crntUsr;
 			length = len;
+			feed  = new Post[length];
 			posts = new ArrayList();
 			readPosts(storage);
 			chooseSort(option);
@@ -45,24 +46,16 @@ public class Feed {
 		while(storage.hasNextLine()){
 			String post[] = storage.nextLine().split(",");
 			int id = Integer.parseInt(post[0]);
-			System.out.println(id);
 			Date date = new Date(Long.parseLong(post[1]));
-			System.out.println(date);
 			int privacy = Integer.parseInt(post[2]);
-			System.out.println(privacy);
 			String user = post[3];
-			System.out.println(user);
 			String contents = post[4];
-			System.out.println(contents);
 			String location = post[5];
-			System.out.println(location);
 			int numHash = Integer.parseInt(post[6]);
-			System.out.println(numHash);
 			String hashtags[] = new String[numHash];
 			if(numHash > 0){
-				for(int j = 7; j < (6+numHash); j++){
-					hashtags[j] = post[j];
-					System.out.println(hashtags[j] + " goes to " + post[j]);
+				for(int j = 7; j < (7+numHash); j++){
+					hashtags[j-7] = post[j];
 				}
 			}
 			posts.add(new Post(id, date, privacy, user, contents, location, hashtags));
@@ -76,6 +69,7 @@ public class Feed {
 				Post check = posts.get(j);
 				int privacy = check.getPrivacyLevel();
 				if(privacy == 0){
+					feed[i] = check;
 				}
 				if(privacy == 1){
 					if(currentUser.isSubscribedTo(check.getPostAuthor())){
@@ -163,9 +157,10 @@ public class Feed {
 	}
 
 	private void displayFeed(){
+		Post read;
 		for(int i = 0; i < length; i++){
-			Post read = feed[i];
-			System.out.printf("%s at %s:\n%s\nLocated at: %s.\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
+			read = feed[i];
+			System.out.printf("By user: %s\n%s:\n%s\nLocation: %s.\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
 		}
 	}
 }
