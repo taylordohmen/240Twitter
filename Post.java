@@ -20,10 +20,9 @@ public class Post {
         postContents = contents;
         locationTag = location;
         hashtags = hashes;
-        writePostToFile();
     }
     
-    private void writePostToFile() {
+    void writePostToFile() {
         try (FileWriter fw = new FileWriter("posts.csv", true)) {
             fw.write(this.postID + ",");
             //date in milliseconds since whenever
@@ -37,6 +36,7 @@ public class Post {
             for (String s : this.hashtags) {
                 fw.write(s + ",");
             }
+            fw.write("\n");
         } catch (IOException e) {
             
         }

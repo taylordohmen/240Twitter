@@ -41,6 +41,7 @@ public class Main {
         String hashArray[] = new String[hashtags.size()];
         convertToArray(hashtags, hashArray);
         Post post = new Post(1234, date, privacy, username, contents, location, hashArray);
+        post.writePostToFile();
     }
 
     public static void convertToArray(ArrayList<String> hashtags, String hashArray[]) {
