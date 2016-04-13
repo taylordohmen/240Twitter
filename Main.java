@@ -3,6 +3,7 @@ import java.util.*;
 import java.io.*;
 
 public class Main {
+	static String loggedInUser;
 
     public static void writePost(String username) {
         Scanner in = new Scanner(System.in);
@@ -26,21 +27,21 @@ public class Main {
         } while (!contains(location, locations));
 
         System.out.println("Please enter the contents of your post:");
-        contents.concat(" ".concat(in.nextLine()));
+        contents = contents.concat(" ".concat(in.nextLine()));
         ArrayList<String> hashtags = new ArrayList();
         String hash = "";
         do {
             System.out.println("Please enter the hashtags you wish to include, or enter 'done' when you are finished.");
             hash = in.next();
             if (!hash.equals("done")) {
-                contents.concat(" #".concat(hash));
+                contents = contents.concat(" #".concat(hash));
                 hashtags.add(hash);
             }
         } while (!hash.equals("done"));
         Date date = new Date();
         String hashArray[] = new String[hashtags.size()];
         convertToArray(hashtags, hashArray);
-        Post post = new Post(1234, date, privacy, username, contents, location, hashArray);
+        Post post = new Post(1234, date, privacy, loggedInUser, contents, location, hashArray);
         post.writePostToFile();
     }
 
@@ -97,6 +98,7 @@ public class Main {
                     String password = input.next();
                     //if username and password matches then
                     loggedIn = UserManager.loginUser(username, password);
+					loggedInUser = username;
                     break;
                 case 3:
                     System.exit(0);
