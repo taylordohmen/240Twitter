@@ -86,10 +86,11 @@ public class User {
                         for (int i = 0; i < 6; i++) {
                             System.out.println("Add a new Pokemon to your party? (y/n): ");
                             String pokemon = in.nextLine();
-                            if (pokemon.equals("y")) {
+                            if (pokemon.toLowerCase().equals("y")) {
+                                System.out.println("Enter the pokemon's name to add: ");
                                 partyPokemon[i] = in.nextLine();
                             } else {
-                                for (int j = 0; j < i; j++) {
+                                for (int j = i; j < 6; j++) {
                                     partyPokemon[j] = " ";
                                 }
                                 break;
@@ -114,7 +115,7 @@ public class User {
                         + "\nBio"
                         + "\nHometown"
                         + "\nFavorite Pokemon type"
-                        + "\nPartY Pokemon"
+                        + "\nParty Pokemon"
                         + "\nNumber of Badges");
                 choice2 = in.nextLine().toLowerCase();
 
@@ -138,7 +139,9 @@ public class User {
                         System.out.println(getFavoriteType());
                         break;
                     case "party pokemon":
-                        System.out.println(getParty());
+                        for(String p: partyPokemon) {
+                            System.out.println(p);
+                        }
                         break;
                     case "number of badges":
                         System.out.println(getBadges());
@@ -245,7 +248,7 @@ public class User {
     }
 
     public void setParty(String[] partyPokemon) {
-        this.partyPokemon = partyPokemon.clone(); //different method to copy array?
+        this.partyPokemon = Arrays.copyOfRange(partyPokemon, 0, 6);
     }
 
     public void setBadges(String numOfBadges) {
