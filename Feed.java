@@ -45,16 +45,24 @@ public class Feed {
 		while(storage.hasNextLine()){
 			String post[] = storage.nextLine().split(",");
 			int id = Integer.parseInt(post[0]);
-			Date date = new Date(Integer.parseInt(post[1]));
+			System.out.println(id);
+			Date date = new Date(Long.parseLong(post[1]));
+			System.out.println(date);
 			int privacy = Integer.parseInt(post[2]);
+			System.out.println(privacy);
 			String user = post[3];
+			System.out.println(user);
 			String contents = post[4];
+			System.out.println(contents);
 			String location = post[5];
+			System.out.println(location);
 			int numHash = Integer.parseInt(post[6]);
+			System.out.println(numHash);
 			String hashtags[] = new String[numHash];
 			if(numHash > 0){
-				for(int j = 7; j < (7+numHash); j++){
+				for(int j = 7; j < (6+numHash); j++){
 					hashtags[j] = post[j];
+					System.out.println(hashtags[j] + " goes to " + post[j]);
 				}
 			}
 			posts.add(new Post(id, date, privacy, user, contents, location, hashtags));
