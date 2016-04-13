@@ -90,7 +90,7 @@ public class User {
                                 System.out.println("Enter the pokemon's name to add: ");
                                 partyPokemon[i] = in.nextLine();
                             } else {
-                                for (int j = 0; j < i; j++) {
+                                for (int j = i; j < 6; j++) {
                                     partyPokemon[j] = " ";
                                 }
                                 break;
