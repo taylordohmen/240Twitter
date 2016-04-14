@@ -58,6 +58,7 @@ public class UserManager {
             if (username.equals(u.getUsername())) {
                 if (password.equals(u.getPassword())) {
                     valid = true;
+                    break;
                 }
             }
         }
@@ -130,7 +131,7 @@ public class UserManager {
         }
         return isUser;
     }
-    
+
     public static User getUser(String username) {
         User user = null;
         ArrayList<User> allUsers = getAllUsers();
@@ -141,5 +142,35 @@ public class UserManager {
             }
         }
         return user;
+    }
+
+    public static void writeUserUpdates(User user) {
+        ArrayList<User> allUsers = getAllUsers();
+        try (FileWriter fw = new FileWriter("UserInfo.csv", false)) {
+            fw.write("");
+        } catch (IOException e) {
+        }
+        try (FileWriter fw = new FileWriter("UserInfo.csv", true)) {
+            for (User u : allUsers) {
+                if (u.getUsername().equals(user.getUsername())) {
+                    u.setAge(user.getAge());
+                    u.setBadges(user.getBadges());
+                    System.out.println(u.getBio());
+                    u.setBio(user.getBio());
+                    System.out.println(u.getBio());
+                    u.setFavPoke(user.getFavPoke());
+                    u.setFavoriteType(user.getFavoriteType());
+                    u.setHometown(user.getHometown());
+                    u.setParty(user.getParty());
+                    u.setRealName(user.getRealName());
+                    u.setPassword(user.getPassword());
+                }
+                for (String s : getUserInfo(u)) {
+                    fw.write(s + ",");
+                }
+                fw.write("\n");
+            }
+        } catch (IOException e) {
+        }
     }
 }
