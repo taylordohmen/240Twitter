@@ -79,12 +79,12 @@ public class Feed {
                 }
                 if (privacy == 1) {
                     if (currentUser.isSubscribedTo(check.getPostAuthor()) || currentUser.getUsername().equals(check.getPostAuthor())) {
-						feed[i] = check;
+                        feed[i] = check;
                     }
                 }
                 if (privacy == 2) {
                     if (currentUser.getUsername() == check.getPostContents().split(" ")[0]) {
-						feed[i] = check;
+                        feed[i] = check;
                     }
                 }
                 j++;
