@@ -129,7 +129,7 @@ public class Main {
 						option = input.nextInt();
 						input.nextLine();
 						System.out.println("Feed updating: ");
-						Feed feed = new Feed(option, length, UserManager.getUser(userName));
+						Feed feed = new Feed(option, length, UserManager.getUser(loggedInUser));
 						break;
 					case 2:
 						input.nextLine();  // clear newline out of the buffer
