@@ -155,9 +155,7 @@ public class UserManager {
                 if (u.getUsername().equals(user.getUsername())) {
                     u.setAge(user.getAge());
                     u.setBadges(user.getBadges());
-                    System.out.println(u.getBio());
                     u.setBio(user.getBio());
-                    System.out.println(u.getBio());
                     u.setFavPoke(user.getFavPoke());
                     u.setFavoriteType(user.getFavoriteType());
                     u.setHometown(user.getHometown());
