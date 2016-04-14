@@ -165,6 +165,7 @@ public class Main {
 						String updateUsername = input.next();
 						User updateUser = UserManager.getUser(updateUsername);
 						updateUser.updateProfile();
+                                                UserManager.writeUserUpdates();
 						break;
 					case 7:
 						System.out.println("Logging out...\n");
