@@ -38,17 +38,9 @@ public class User {
         String c;
         boolean cont = true;
         ////System.out.println("Newly created profiles are completely blank by default.");  ADD THIS SOMEWHERE AS A DISCLAIMER (AFTER PROFILE CREATION?)
-                
+
         do {
-            System.out.println("Do you want to continue editing/viewing your profile? (yes/no)");
-            c = in.nextLine();
-            if (c.toLowerCase().equals("yes")) {
-                cont = true;
-            } else {
-                cont = false;
-                //break;
-            }
-            
+
             System.out.println("Would you like to set or get user profile data members? (set/get):");
             choice = in.nextLine();
 
@@ -147,7 +139,7 @@ public class User {
                             System.out.println(getFavoriteType());
                             break;
                         case "party pokemon":
-                            for(String p: partyPokemon) {
+                            for (String p : partyPokemon) {
                                 System.out.println(p);
                             }
                             break;
@@ -158,6 +150,9 @@ public class User {
                             break;
                     }
             }
+            System.out.println("Do you want to continue editing/viewing your profile? (yes/no)");
+            c = in.nextLine();
+            cont = c.toLowerCase().equals("yes"); //break;
         } while (cont == true);
     }
 
