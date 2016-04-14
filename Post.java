@@ -23,18 +23,18 @@ public class Post {
     }
     
     void writePostToFile() {
-        try (FileWriter fw = new FileWriter("posts.csv", true)) {
-            fw.write(this.postID + ",");
+        try (FileWriter fw = new FileWriter("posts.tsv", true)) {
+            fw.write(this.postID + "\t");
             //date in milliseconds since whenever
             //to convert back to date object call new date() with this as the parameter
-            fw.write(this.date.getTime() + ",");
-            fw.write(this.privacyLevel + ",");
-            fw.write(this.postAuthor + ",");
-            fw.write(this.postContents + ",");
-            fw.write(this.locationTag + ",");
-            fw.write(this.hashtags.length + ",");
+            fw.write(this.date.getTime() + "\t");
+            fw.write(this.privacyLevel + "\t");
+            fw.write(this.postAuthor + "\t");
+            fw.write(this.postContents + "\t");
+            fw.write(this.locationTag + "\t");
+            fw.write(this.hashtags.length + "\t");
             for (String s : this.hashtags) {
-                fw.write(s + ",");
+                fw.write(s + "\t");
             }
             fw.write("\n");
         } catch (IOException e) {

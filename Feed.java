@@ -12,7 +12,7 @@ public class Feed {
     // also expecting that user has been prompted with the options for sorting the post, passed to constructor as an int.
 
     public Feed(int option, int len, User crntUsr) {
-        try (Scanner storage = new Scanner(new FileInputStream("posts.csv"))) {
+        try (Scanner storage = new Scanner(new FileInputStream("posts.tsv"))) {
             currentUser = crntUsr;
             length = len;
             feed = new Post[length];
@@ -50,7 +50,7 @@ public class Feed {
 
     private void readPosts(Scanner storage) {
         while (storage.hasNextLine()) {
-            String post[] = storage.nextLine().split(",");
+            String post[] = storage.nextLine().split("\t");
             int id = Integer.parseInt(post[0]);
             Date date = new Date(Long.parseLong(post[1]));
             int privacy = Integer.parseInt(post[2]);
@@ -78,11 +78,13 @@ public class Feed {
                     feed[i] = check;
                 }
                 if (privacy == 1) {
-                    if (currentUser.isSubscribedTo(check.getPostAuthor())) {
+                    if (currentUser.isSubscribedTo(check.getPostAuthor()) || currentUser.getUsername().equals(check.getPostAuthor())) {
+						feed[i] = check;
                     }
                 }
                 if (privacy == 2) {
                     if (currentUser.getUsername() == check.getPostContents().split(" ")[0]) {
+						feed[i] = check;
                     }
                 }
                 j++;
