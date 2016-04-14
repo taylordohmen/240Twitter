@@ -83,7 +83,7 @@ public class Feed {
                     }
                 }
                 if (privacy == 2) {
-                    if (currentUser.getUsername() == check.getPostContents().split(" ")[0]) {
+                    if (currentUser.getUsername().equals(check.getPostContents().split(" ")[0])) {
                         feed[i] = check;
                     }
                 }
@@ -107,7 +107,7 @@ public class Feed {
         try (Scanner readMons = new Scanner(new FileInputStream("pokemon.csv"))) {
             String pokemonList[] = readMons.nextLine().split(",");
             for (String pokemon : pokemonList) {
-                if (hash == pokemon) {
+                if (hash.equals(pokemon)) {
                     pokemonSearch(pokemon);
                 }
             }
@@ -143,7 +143,7 @@ public class Feed {
         int j = 0;
         for (int i = 0; i < length; i++) {
             while (j < posts.size()) {
-                if (user == posts.get(j).getPostAuthor()) {
+                if (user.equals(posts.get(j).getPostAuthor())) {
                     feed[i] = posts.get(j);
                     break;
                 }
