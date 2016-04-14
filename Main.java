@@ -4,6 +4,7 @@ import java.io.*;
 
 public class Main {
 	static String loggedInUser;
+        static User loggedInObject;
 
 	public static void writePost(String username) {
 		Scanner in = new Scanner(System.in);
@@ -99,6 +100,7 @@ public class Main {
 					//if username and password matches then
 					loggedIn = UserManager.loginUser(username, password);
 					loggedInUser = username;
+                                        loggedInObject = new User(UserManager.getUserInfo(UserManager.getUser(loggedInUser)));
 					break;
 				case 3:
 					System.exit(0);
@@ -165,7 +167,7 @@ public class Main {
 						String updateUsername = input.next();
 						User updateUser = UserManager.getUser(updateUsername);
 						updateUser.updateProfile();
-                                                UserManager.writeUserUpdates();
+                                                UserManager.writeUserUpdates(loggedInObject);
 						break;
 					case 7:
 						System.out.println("Logging out...\n");
