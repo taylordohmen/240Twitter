@@ -148,7 +148,7 @@ public class Main {
                         option = input.nextInt();
                         input.nextLine();
                         System.out.println("Feed updating: ");
-                        Feed feed = new Feed(option, length, UserManager.getUser(loggedInUser));
+                        Feed.generateFeed(option, length, UserManager.getUser(loggedInUser));
                         break;
                     case 2:
                         input.nextLine();  // clear newline out of the buffer
@@ -157,6 +157,7 @@ public class Main {
                         //Store postMessage in text file
                         break;
                     case 3:
+                        
                         break;
                     case 4:
                         System.out.println("Please enter the username of the user who's profile you wish to view: ");
