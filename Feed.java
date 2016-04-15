@@ -64,7 +64,7 @@ public class Feed {
 					hashtags[j - 7] = post[j];
 				}
 			}
-			posts.add(new Post(id, date, privacy, user, contents, location, hashtags));
+			posts.add(0, new Post(id, date, privacy, user, contents, location, hashtags));
 		}
 	}
 
@@ -189,7 +189,7 @@ public class Feed {
 
 	private void displayFeed() {
 		Post read;
-		for (int i = 0; i < length; i++) {
+		for (int i = length - 1; i >= 0; i--) {
 			read = feed[i];
 			System.out.printf("By user: %s\n%s:\n%s\nLocation: %s.\n\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
 		}
