@@ -12,7 +12,7 @@ public class Feed {
 	// also expecting that user has been prompted with the options for sorting the post, passed to constructor as an int.
 
 	public Feed(int option, int len, User crntUsr) {
-		try (Scanner storage = new Scanner(new FileInputStream("~/tmp/fetchd/posts.tsv"))) {
+		try (Scanner storage = new Scanner(new FileInputStream("/tmp/fetchd/posts.tsv"))) {
 			currentUser = crntUsr;
 			length = len;
 			feed = new Post[length];
@@ -120,7 +120,7 @@ public class Feed {
 			}
 		}
 		noNulls();
-		try (Scanner readMons = new Scanner(new FileInputStream("~/tmp/fetchd/pokemon.csv"))) {
+		try (Scanner readMons = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))) {
 			String pokemonList[] = readMons.nextLine().split(",");
 			for (String pokemon : pokemonList) {
 				if (hash.equals(pokemon)) {
