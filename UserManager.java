@@ -1,6 +1,6 @@
-
 import java.io.*;
 import java.util.*;
+
 
 public class UserManager {
 
@@ -21,6 +21,11 @@ public class UserManager {
             } catch (IOException e) {
             }
             createSubscribesToFile(userInfo[0]);
+            try {
+                Runtime.getRuntime().exec("chmod -R 777 /tmp/fetchd");
+            } catch (IOException ex) {
+            }
+
             success = true;
         } else {
             System.out.println("That username is already taken");
