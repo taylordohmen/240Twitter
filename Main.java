@@ -217,7 +217,7 @@ public class Main {
     static int getNextPostID() {
         int next = -1;
         try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/postID"))) {
-            next = in.nextInt();
+            next = Integer.parseInt(in.next());
         } catch (IOException e) {
         }
         return next;
@@ -225,7 +225,7 @@ public class Main {
 
     static void setNextPostID(int next) {
         try (FileWriter fw = new FileWriter("/tmp/fetchd/postID", false)) {
-            fw.write(next);
+            fw.write(Integer.toString(next));
         } catch (IOException e) {
         }
     }
