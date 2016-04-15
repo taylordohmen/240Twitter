@@ -13,9 +13,9 @@ public class UserManager {
         boolean success = false;
         ArrayList<User> allUsers = getAllUsers();
         if (uniqueUsername(userInfo[0], allUsers)) {
-            try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.csv", true)) {
+            try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.tsv", true)) {
                 for (String s : userInfo) {
-                    fw.write(s + ",");
+                    fw.write(s + "\t");
                 }
                 fw.write("\n");
             } catch (IOException e) {
@@ -72,7 +72,7 @@ public class UserManager {
 
         ArrayList<User> allUsers = new ArrayList();
 
-        try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/UserInfo.csv"))) {
+        try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/UserInfo.tsv"))) {
 
             while (in.hasNextLine()) {
 
@@ -85,7 +85,7 @@ public class UserManager {
 
                     char currentChar = line.charAt(i);
 
-                    if (currentChar == ',') {
+                    if (currentChar == '\t') {
                         allFields[placeCount] = currentField.toString();
                         placeCount++;
                         currentField = new StringBuilder("");
@@ -146,11 +146,11 @@ public class UserManager {
 
     public static void writeUserUpdates(User user) {
         ArrayList<User> allUsers = getAllUsers();
-        try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.csv", false)) {
+        try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.tsv", false)) {
             fw.write("");
         } catch (IOException e) {
         }
-        try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.csv", true)) {
+        try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.tsv", true)) {
             for (User u : allUsers) {
                 if (u.getUsername().equals(user.getUsername())) {
                     u.setAge(user.getAge());
@@ -164,7 +164,7 @@ public class UserManager {
                     u.setPassword(user.getPassword());
                 }
                 for (String s : getUserInfo(u)) {
-                    fw.write(s + ",");
+                    fw.write(s + "\t");
                 }
                 fw.write("\n");
             }
