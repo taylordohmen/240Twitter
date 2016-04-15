@@ -112,15 +112,15 @@ public class Main {
 
             while (loggedIn == true) {
 
-                System.out.println("You are logged in, please select an action: ");
+                System.out.println("\nYou are logged in, please select an action: ");
                 System.out.println("1) Update Feed\n"
                         + "2) Submit Post\n"
                         + "3) Respond to a post\n"
                         + "4) Direct Message\n"
                         + "5) View User Profile\n"
                         + "6) Update User Profile\n"
-                        + "7) Subscribe to a user"
-                        + "8) Unsubscribe to a user"
+                        + "7) Subscribe to a user\n"
+                        + "8) Unsubscribe to a user\n"
                         + "9) Logout\n"
                 );
                 int selection2 = input.nextInt();
@@ -133,7 +133,7 @@ public class Main {
                         length = input.nextInt();
                         input.nextLine();
                         int option = 0;
-                        System.out.println("How would you like to organize your feed?\n1 - hashtag; 2 - username; 3 - location");
+                        System.out.println("How would you like to organize your feed?\n0 - by date, 1 - hashtag; 2 - username; 3 - location");
                         option = input.nextInt();
                         input.nextLine();
                         System.out.println("Feed updating: ");
@@ -142,7 +142,7 @@ public class Main {
                     case 2:
                         input.nextLine();  // clear newline out of the buffer
                         writePost(userName);
-						// System.out.printf("Debug: postMessage contains %s\n", postMessage);
+                        // System.out.printf("Debug: postMessage contains %s\n", postMessage);
                         //Store postMessage in text file
                         break;
                     case 3:
@@ -155,7 +155,7 @@ public class Main {
                         System.out.println("Please enter the username of the user who's profile you wish to view: ");
                         String viewUser = input.next();
                         String[] profile = UserManager.getUserInfo(UserManager.getUser(viewUser));
-						// this prints out all user info. one line per word. shows password that's bad
+                        // this prints out all user info. one line per word. shows password that's bad
                         //probably needs to be formatted
 
                         for (int i = 0; i < profile.length; i++) {
@@ -180,7 +180,7 @@ public class Main {
                         currentUser.subscribeTo(subscribeToUser);
                         break;
                     case 8:
-                        System.out.println("Please enter the username of the user who you wish to subscribe to: ");
+                        System.out.println("Please enter the username of the user who you wish to unsubscribe to: ");
                         String unsubscribeToUser = input.next();
                         currentUser.unsubscribeTo(unsubscribeToUser);
                         break;
@@ -202,7 +202,7 @@ public class Main {
         return location.split(",");
     }
 
-	//returns string array containing all possible pokemon
+    //returns string array containing all possible pokemon
     //We still need to create the pokemon file
     static String[] getPokemon() {
         String pokemon = "";

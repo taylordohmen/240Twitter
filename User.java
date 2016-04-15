@@ -41,12 +41,12 @@ public class User {
 
         do {
 
-            System.out.println("Would you like to set or get user profile data members? (set/get):");
+            System.out.println("\nWould you like to set or get user profile data members? (set/get):");
             choice = in.nextLine();
 
             switch (choice) {
                 case "set":
-                    System.out.println("Enter an option to set: "
+                    System.out.println("\nEnter an option to set: "
                             + "\nReal Name"
                             + "\nAge"
                             + "\nBio"
@@ -60,27 +60,22 @@ public class User {
                         case "real name":
                             System.out.println("Enter a new real name: ");
                             realName = in.nextLine();
-                            //setRealName(realName);
                             break;
                         case "age":
                             System.out.println("Enter a new age: ");
                             age = in.nextLine();
-                            //setAge(age);
                             break;
                         case "bio":
                             System.out.println("Enter a new bio: ");
                             bio = in.nextLine();
-                            //setBio(bio);
                             break;
                         case "hometown":
                             System.out.println("Enter a new hometown: ");
                             hometown = in.nextLine();
-                            //setHometown(hometown);
                             break;
                         case "favorite type of pokemon":
                             System.out.println("Enter a new favorite type of pokemon: ");
                             favType = in.nextLine();
-                            //setFavoriteType(favType);
                             break;
                         case "party pokemon":
                             for (int i = 0; i < 6; i++) {
@@ -108,7 +103,7 @@ public class User {
                     }
                     break;
                 case "get":
-                    System.out.println("Enter an option to get: "
+                    System.out.println("\nEnter an option to get: "
                             + "\nUsername"
                             + "\nReal Name"
                             + "\nAge"
