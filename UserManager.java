@@ -13,7 +13,7 @@ public class UserManager {
         boolean success = false;
         ArrayList<User> allUsers = getAllUsers();
         if (uniqueUsername(userInfo[0], allUsers)) {
-            try (FileWriter fw = new FileWriter("UserInfo.csv", true)) {
+            try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.csv", true)) {
                 for (String s : userInfo) {
                     fw.write(s + ",");
                 }
@@ -45,7 +45,7 @@ public class UserManager {
     //helper function for registerUser()
     //creates a new csv file that will hold the usernames of all the associated user's subscribees
     private static void createSubscribesToFile(String username) {
-        try (PrintWriter pw = new PrintWriter(username + "SubscribesTo.csv")) {
+        try (PrintWriter pw = new PrintWriter("/tmp/fetchd/" + username + "SubscribesTo.csv")) {
         } catch (IOException e) {
         }
     }
@@ -72,7 +72,7 @@ public class UserManager {
 
         ArrayList<User> allUsers = new ArrayList();
 
-        try (Scanner in = new Scanner(new FileInputStream("UserInfo.csv"))) {
+        try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/UserInfo.csv"))) {
 
             while (in.hasNextLine()) {
 
@@ -146,11 +146,11 @@ public class UserManager {
 
     public static void writeUserUpdates(User user) {
         ArrayList<User> allUsers = getAllUsers();
-        try (FileWriter fw = new FileWriter("UserInfo.csv", false)) {
+        try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.csv", false)) {
             fw.write("");
         } catch (IOException e) {
         }
-        try (FileWriter fw = new FileWriter("UserInfo.csv", true)) {
+        try (FileWriter fw = new FileWriter("/tmp/fetchd/UserInfo.csv", true)) {
             for (User u : allUsers) {
                 if (u.getUsername().equals(user.getUsername())) {
                     u.setAge(user.getAge());

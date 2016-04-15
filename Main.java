@@ -195,7 +195,7 @@ public class Main {
     //returns string array containing all possible location tags
     static String[] getLocations() {
         String location = "";
-        try (Scanner in = new Scanner(new FileInputStream("locations.csv"))) {
+        try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/locations.csv"))) {
             location = in.nextLine();
         } catch (IOException e) {
         }
@@ -206,7 +206,7 @@ public class Main {
     //We still need to create the pokemon file
     static String[] getPokemon() {
         String pokemon = "";
-        try (Scanner in = new Scanner(new FileInputStream("pokemon.csv"))) {
+        try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))) {
             pokemon = in.nextLine();
         } catch (IOException e) {
         }

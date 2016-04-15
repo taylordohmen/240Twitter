@@ -167,7 +167,7 @@ public class User {
     //if so it appends the username to this user's SubscribesTo.csv
     public void subscribeTo(String username) {
         if (UserManager.isUser(username) && !isSubscribedTo(username)) {
-            try (FileWriter fw = new FileWriter(this.username + "SubscribesTo.csv", true)) {
+            try (FileWriter fw = new FileWriter("/tmp/fetchd/" + this.username + "SubscribesTo.csv", true)) {
                 fw.write(username + ",");
             } catch (IOException e) {
             }
@@ -180,12 +180,12 @@ public class User {
             ArrayList<String> subscribedToList = getSubscribedTo();
             subscribedToList.remove(username);
 
-            try (FileWriter fw = new FileWriter(this.username + "SubscribesTo.csv", false)) {
+            try (FileWriter fw = new FileWriter("/tmp/fetchd/" + this.username + "SubscribesTo.csv", false)) {
                 fw.write("");
             } catch (IOException e) {
             }
 
-            try (FileWriter fw = new FileWriter(this.username + "SubscribesTo.csv", true)) {
+            try (FileWriter fw = new FileWriter("/tmp/fetchd/" + this.username + "SubscribesTo.csv", true)) {
                 for (String s : subscribedToList) {
                     fw.write(s + ",");
                 }
@@ -200,7 +200,7 @@ public class User {
 
         ArrayList<String> subscribedTo = new ArrayList();
 
-        try (Scanner in = new Scanner(new FileInputStream(this.username + "SubscribesTo.csv"))) {
+        try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/" + this.username + "SubscribesTo.csv"))) {
 
             while (in.hasNextLine()) {
 

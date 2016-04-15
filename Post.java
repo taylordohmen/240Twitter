@@ -23,7 +23,7 @@ public class Post {
     }
     
     void writePostToFile() {
-        try (FileWriter fw = new FileWriter("posts.tsv", true)) {
+        try (FileWriter fw = new FileWriter("/tmp/fetchd/posts.tsv", true)) {
             fw.write(this.postID + "\t");
             //date in milliseconds since whenever
             //to convert back to date object call new date() with this as the parameter
