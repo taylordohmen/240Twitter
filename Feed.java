@@ -4,14 +4,14 @@ import java.io.*;
 
 public class Feed {
 
-	private User currentUser;
-	private int length;
-	private ArrayList<Post> posts;
-	private Post feed[];
+	private static User currentUser;
+	private static int length;
+	private static ArrayList<Post> posts;
+	private static Post feed[];
 	// expecting that the user is prompted asking how many posts to display, with a default value of 20 being passed.
 	// also expecting that user has been prompted with the options for sorting the post, passed to constructor as an int.
 
-	public Feed(int option, int len, User crntUsr) {
+	public static void generateFeed(int option, int len, User crntUsr) {
 		try (Scanner storage = new Scanner(new FileInputStream("/tmp/fetchd/posts.tsv"))) {
 			currentUser = crntUsr;
 			length = len;
@@ -25,7 +25,7 @@ public class Feed {
 		}
 	}
 
-	private void chooseSort(int option) {
+	private static void chooseSort(int option) {
 		Scanner in = new Scanner(System.in);
 		switch (option) {
 			case 1:
@@ -48,7 +48,7 @@ public class Feed {
 		}
 	}
 
-	private void readPosts(Scanner storage) {
+	static void readPosts(Scanner storage) {
 		while (storage.hasNextLine()) {
 			String post[] = storage.nextLine().split("\t");
 			int id = Integer.parseInt(post[0]);
@@ -68,7 +68,7 @@ public class Feed {
 		}
 	}
 
-	private boolean checkPrivacy(int i, Post check) {
+	private static boolean checkPrivacy(int i, Post check) {
 		int privacy = check.getPrivacyLevel();
 		if (privacy == 0) {
 			return true;
@@ -90,7 +90,7 @@ public class Feed {
 		return false; // java why u so dumb
 	}
 
-	private void update() {
+	private static void update() {
 		int j = 0;
 		for (int i = 0; i < length; i++) {
 			while (j < posts.size()) {
@@ -106,7 +106,7 @@ public class Feed {
 		noNulls();
 	}
 
-	private void updateHash(String hash) {
+	private static void updateHash(String hash) {
 		int j = 0;
 		for (int i = 0; i < length; i++) {
 			while (j < posts.size()) {
@@ -132,7 +132,7 @@ public class Feed {
 		}
 	}
 
-	private String pokemonSearch(String pokemon) {
+	private static String pokemonSearch(String pokemon) {
 		int count = 0;
 		int maxCount = count;
 		String chosen = "The pokemon you searched for has not been found yet!\nWill you be the first?";
@@ -155,7 +155,7 @@ public class Feed {
 		}
 	}
 
-	private void updateUser(String user) {
+	private static void updateUser(String user) {
 		int j = 0;
 		for (int i = 0; i < length; i++) {
 			while (j < posts.size()) {
@@ -171,7 +171,7 @@ public class Feed {
 		noNulls();
 	}
 
-	private void updateLoca(String loca) {
+	private static void updateLoca(String loca) {
 		int j = 0;
 		for (int i = 0; i < length; i++) {
 			while (j < posts.size()) {
@@ -187,7 +187,7 @@ public class Feed {
 		noNulls();
 	}
 
-	private void displayFeed() {
+	private static void displayFeed() {
 		Post read;
 		for (int i = length - 1; i >= 0; i--) {
 			read = feed[i];
@@ -197,7 +197,7 @@ public class Feed {
 		}
 	}
 
-	private void noNulls() {
+	private static void noNulls() {
 		for (int i = 0; i < feed.length; i++) {
 			if (feed[i] == null) {
 				String empty[] = new String[]{""};

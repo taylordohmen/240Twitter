@@ -54,7 +54,9 @@ public class Main {
         Date date = new Date();
         String hashArray[] = new String[hashtags.size()];
         convertToArray(hashtags, hashArray);
-        Post post = new Post(1234, date, privacy, loggedInUser, contents, location, hashArray);
+        int id = getNextPostID();
+        Post post = new Post(id, date, privacy, loggedInUser, contents, location, hashArray);
+        setNextPostID(id + 1);
         post.writePostToFile();
     }
 
@@ -125,12 +127,11 @@ public class Main {
                 System.out.println("\nYou are logged in, please select an action: ");
                 System.out.println("1) Update Feed\n"
                         + "2) Submit Post\n"
-                        + "3) Respond to a post\n"
-                        + "4) View User Profile\n"
-                        + "5) Update User Profile\n"
-                        + "6) Subscribe to a user\n"
-                        + "7) Unsubscribe to a user\n"
-                        + "8) Logout\n"
+                        + "3) View User Profile\n"
+                        + "4) Update User Profile\n"
+                        + "5) Subscribe to a user\n"
+                        + "6) Unsubscribe to a user\n"
+                        + "7) Logout\n"
                 );
                 int selection2 = input.nextInt();
 
@@ -146,7 +147,7 @@ public class Main {
                         option = input.nextInt();
                         input.nextLine();
                         System.out.println("Feed updating: ");
-                        Feed feed = new Feed(option, length, UserManager.getUser(loggedInUser));
+                        Feed.generateFeed(option, length, UserManager.getUser(loggedInUser));
                         break;
                     case 2:
                         input.nextLine();  // clear newline out of the buffer
@@ -155,8 +156,6 @@ public class Main {
                         //Store postMessage in text file
                         break;
                     case 3:
-                        break;
-                    case 4:
                         System.out.println("Please enter the username of the user who's profile you wish to view: ");
                         String viewUser = input.next();
                         String[] profile = UserManager.getUserInfo(UserManager.getUser(viewUser));
@@ -172,21 +171,21 @@ public class Main {
                             }
                         }
                         break;
-                    case 5:
+                    case 4:
                         currentUser.updateProfile();
                         UserManager.writeUserUpdates(currentUser);
                         break;
-                    case 6:
+                    case 5:
                         System.out.println("Please enter the username of the user who you wish to subscribe to: ");
                         String subscribeToUser = input.next();
                         currentUser.subscribeTo(subscribeToUser);
                         break;
-                    case 7:
+                    case 6:
                         System.out.println("Please enter the username of the user who you wish to unsubscribe to: ");
                         String unsubscribeToUser = input.next();
                         currentUser.unsubscribeTo(unsubscribeToUser);
                         break;
-                    case 8:
+                    case 7:
                         System.out.println("Logging out...\n");
                         loggedIn = false;
                 }
@@ -214,5 +213,20 @@ public class Main {
         }
         return pokemon.split(",");
     }
+    
+    static int getNextPostID() {
+        int next = -1;
+        try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/postID"))) {
+            next = in.nextInt();
+        } catch (IOException e) {
+        }
+        return next;
+    }
 
+    static void setNextPostID(int next) {
+        try (FileWriter fw = new FileWriter("/tmp/fetchd/postID", false)) {
+            fw.write(next);
+        } catch (IOException e) {
+        }
+    }
 }
