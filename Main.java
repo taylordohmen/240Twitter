@@ -106,8 +106,6 @@ public class Main {
 					break;
 				case 3:
 					System.exit(0);
-				default:
-					selection = input.nextInt();
 			}
 
 			while (loggedIn == true) {
@@ -175,9 +173,6 @@ public class Main {
 					case 7:
 						System.out.println("Logging out...\n");
 						loggedIn = false;
-					default:
-						selection2 = input.nextInt();
-
 				}
 			}
 		}
