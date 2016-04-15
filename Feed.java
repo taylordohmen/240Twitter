@@ -77,7 +77,11 @@ public class Feed {
 				return true;
 			}
 		} else if (privacy == 2) {
-			if (currentUser.getUsername().equals(check.getPostContents().split(" ")[0].substring(1)) || currentUser.getUsername().equals(check.getPostAuthor())) {
+			// System.out.printf("this user is %s, the sender is %s, the first element of the contents is %s, the substring is %s\n", 
+					// currentUser.getUsername(), check.getPostAuthor(), check.getPostContents().split(" ")[0], check.getPostContents().split(" ")[0].substring(1));
+			String user = currentUser.getUsername();
+			String recipient = check.getPostContents().split(" ")[0].substring(1);
+			if (user.equals(recipient) || user.equals(check.getPostAuthor())) {
 				return true;
 			}
 		} else {
