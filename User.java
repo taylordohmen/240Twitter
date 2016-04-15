@@ -60,27 +60,22 @@ public class User {
                         case "real name":
                             System.out.println("Enter a new real name: ");
                             realName = in.nextLine();
-                            //setRealName(realName);
                             break;
                         case "age":
                             System.out.println("Enter a new age: ");
                             age = in.nextLine();
-                            //setAge(age);
                             break;
                         case "bio":
                             System.out.println("Enter a new bio: ");
                             bio = in.nextLine();
-                            //setBio(bio);
                             break;
                         case "hometown":
                             System.out.println("Enter a new hometown: ");
                             hometown = in.nextLine();
-                            //setHometown(hometown);
                             break;
                         case "favorite type of pokemon":
                             System.out.println("Enter a new favorite type of pokemon: ");
                             favType = in.nextLine();
-                            //setFavoriteType(favType);
                             break;
                         case "party pokemon":
                             for (int i = 0; i < 6; i++) {
