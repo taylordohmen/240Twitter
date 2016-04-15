@@ -127,12 +127,11 @@ public class Main {
                 System.out.println("\nYou are logged in, please select an action: ");
                 System.out.println("1) Update Feed\n"
                         + "2) Submit Post\n"
-                        + "3) Respond to a post\n"
-                        + "4) View User Profile\n"
-                        + "5) Update User Profile\n"
-                        + "6) Subscribe to a user\n"
-                        + "7) Unsubscribe to a user\n"
-                        + "8) Logout\n"
+                        + "3) View User Profile\n"
+                        + "4) Update User Profile\n"
+                        + "5) Subscribe to a user\n"
+                        + "6) Unsubscribe to a user\n"
+                        + "7) Logout\n"
                 );
                 int selection2 = input.nextInt();
 
@@ -157,9 +156,6 @@ public class Main {
                         //Store postMessage in text file
                         break;
                     case 3:
-                        
-                        break;
-                    case 4:
                         System.out.println("Please enter the username of the user who's profile you wish to view: ");
                         String viewUser = input.next();
                         String[] profile = UserManager.getUserInfo(UserManager.getUser(viewUser));
@@ -175,21 +171,21 @@ public class Main {
                             }
                         }
                         break;
-                    case 5:
+                    case 4:
                         currentUser.updateProfile();
                         UserManager.writeUserUpdates(currentUser);
                         break;
-                    case 6:
+                    case 5:
                         System.out.println("Please enter the username of the user who you wish to subscribe to: ");
                         String subscribeToUser = input.next();
                         currentUser.subscribeTo(subscribeToUser);
                         break;
-                    case 7:
+                    case 6:
                         System.out.println("Please enter the username of the user who you wish to unsubscribe to: ");
                         String unsubscribeToUser = input.next();
                         currentUser.unsubscribeTo(unsubscribeToUser);
                         break;
-                    case 8:
+                    case 7:
                         System.out.println("Logging out...\n");
                         loggedIn = false;
                 }
