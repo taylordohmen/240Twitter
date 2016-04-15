@@ -14,10 +14,20 @@ public class Main {
         int privacy = in.nextInt();
         in.nextLine();
         String contents = "";
-        if (privacy == 2) {
-            System.out.println("Please enter the username you would like to DM:");
-            contents = contents.concat("@".concat(in.next()));
-        }
+	    if (privacy == 2) {
+			String recipient = "";
+	    	try{
+	            System.out.println("Please enter the username you would like to DM:");
+				recipient = in.next();
+				if (!UserManager.isUser(recipient)){
+					throw new InputMismatchException();
+				}
+			} catch (InputMismatchException e){
+				System.out.println("That user does not exist. Quitting post writer...");
+				return;
+		    }
+	        contents = contents.concat("@".concat(recipient));
+		}
         String location = "";
         String locations[] = getLocations();
         do {

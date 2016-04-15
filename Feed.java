@@ -191,7 +191,9 @@ public class Feed {
 		Post read;
 		for (int i = length - 1; i >= 0; i--) {
 			read = feed[i];
-			System.out.printf("By user: %s\n%s:\n%s\nLocation: %s.\n\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
+			if(!feed[i].getPostAuthor().equals("")){
+				System.out.printf("By user: %s\n%s:\n%s\nLocation: %s.\n\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
+			}
 		}
 	}
 
