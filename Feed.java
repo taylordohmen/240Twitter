@@ -89,13 +89,16 @@ public class Feed {
 	private void update() {
 		int j = 0;
 		for (int i = 0; i < length; i++) {
-			if (j < posts.size()) {
+			while (j < posts.size()) {
 				Post check = posts.get(j);
 				if(checkPrivacy(i, check)){
 					feed[i] = check;
+					j++;
+					break;
 				}
 				j++;
-			} else {
+			} 
+			if (j >= posts.size()) {
 				String empty[] = new String[]{""};
 				feed[i] = new Post(0, new Date(), 0, "", "", "", empty);
 			}
@@ -106,11 +109,17 @@ public class Feed {
 		int j = 0;
 		for (int i = 0; i < length; i++) {
 			while (j < posts.size()) {
-				if (posts.get(j).hasHashtag(hash)) {
-					feed[i] = posts.get(j);
+				Post check = posts.get(j);
+				if (posts.get(j).hasHashtag(hash) && checkPrivacy(i, check)) {
+					feed[i] = check;
+					j++;
 					break;
 				}
 				j++;
+			}
+			if (j >= posts.size()) {
+				String empty[] = new String[]{""};
+				feed[i] = new Post(0, new Date(), 0, "", "", "", empty);
 			}
 		}
 		try (Scanner readMons = new Scanner(new FileInputStream("pokemon.csv"))) {
@@ -152,11 +161,17 @@ public class Feed {
 		int j = 0;
 		for (int i = 0; i < length; i++) {
 			while (j < posts.size()) {
-				if (user.equals(posts.get(j).getPostAuthor())) {
-					feed[i] = posts.get(j);
+				Post check = posts.get(j);
+				if (user.equals(posts.get(j).getPostAuthor()) && checkPrivacy(i, check)) {
+					feed[i] = check;
+					j++;
 					break;
 				}
 				j++;
+			}
+			if (j >= posts.size()) {
+				String empty[] = new String[]{""};
+				feed[i] = new Post(0, new Date(), 0, "", "", "", empty);
 			}
 		}
 	}
@@ -165,11 +180,17 @@ public class Feed {
 		int j = 0;
 		for (int i = 0; i < length; i++) {
 			while (j < posts.size()) {
-				if (loca.equals(posts.get(j).getLocationTag())) {
-					feed[i] = posts.get(j);
+				Post check = posts.get(j);
+				if (loca.equals(posts.get(j).getLocationTag()) && checkPrivacy(i, check)) {
+					feed[i] = check;
+					j++;
 					break;
 				}
 				j++;
+			}
+			if (j >= posts.size()) {
+				String empty[] = new String[]{""};
+				feed[i] = new Post(0, new Date(), 0, "", "", "", empty);
 			}
 		}
 	}
@@ -178,7 +199,7 @@ public class Feed {
 		Post read;
 		for (int i = 0; i < length; i++) {
 			read = feed[i];
-			System.out.printf("By user: %s\n%s:\n%s\nLocation: %s.\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
+			System.out.printf("By user: %s\n%s:\n%s\nLocation: %s.\n\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
 		}
 	}
 }
