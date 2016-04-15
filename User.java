@@ -34,61 +34,82 @@ public class User {
     public void updateProfile() {
         Scanner in = new Scanner(System.in);
         String choice;
-        String choice2;
+        int choice2;
         String c;
         boolean cont = true;
         ////System.out.println("Newly created profiles are completely blank by default.");  ADD THIS SOMEWHERE AS A DISCLAIMER (AFTER PROFILE CREATION?)
 
         do {
-
-            System.out.println("\nEnter an option to set: "
-                    + "\nReal Name"
-                    + "\nAge"
-                    + "\nBio"
-                    + "\nHometown"
-                    + "\nFavorite Pokemon type"
-                    + "\nParty Pokemon"
-                    + "\nNumber of Badges");
-            choice2 = in.nextLine().toLowerCase();
-
+			try{
+	            System.out.println("\nEnter an option to set: "
+                    + "\n1- Real Name"
+                    + "\n2- Age"
+                    + "\n3- Bio"
+                    + "\n4- Hometown"
+                    + "\n5- Favorite Pokemon type"
+                    + "\n6- Party Pokemon"
+                    + "\n7- Number of Badges"
+					+ "\n0- quit");
+    	        choice2 = in.nextInt();
+			} catch (InputMismatchException e){
+				System.out.println("Invalid input. Please enter a number listed.");
+				choice2 = -1;
+			}
             switch (choice2) {
-                case "real name":
+				case 0:
+					cont = false;
+					break;
+                case 1:
                     System.out.println("Enter a new real name: ");
                     realName = in.nextLine();
                     break;
-                case "age":
+                case 2:
                     System.out.println("Enter a new age: ");
                     age = in.nextLine();
                     break;
-                case "bio":
+                case 3:
                     System.out.println("Enter a new bio: ");
                     bio = in.nextLine();
                     break;
-                case "hometown":
+                case 4:
                     System.out.println("Enter a new hometown: ");
                     hometown = in.nextLine();
                     break;
-                case "favorite type of pokemon":
+                case 5:
                     System.out.println("Enter a new favorite type of pokemon: ");
                     favType = in.nextLine();
                     break;
-                case "party pokemon":
-                    for (int i = 0; i < 6; i++) {
-                        System.out.println("Add a new Pokemon to your party? (y/n): ");
-                        String pokemon = in.nextLine();
-                        if (pokemon.toLowerCase().equals("y")) {
-                            System.out.println("Enter the pokemon's name to add: ");
-                            partyPokemon[i] = in.nextLine();
-                        } else {
-                            for (int j = i; j < 6; j++) {
-                                partyPokemon[j] = " ";
-                            }
+                case 6:
+					try(Scanner pokes = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))){
+	                    for (int i = 0; i < 6; i++) {
+	                        System.out.println("Add a new Pokemon to your party? (y/n): ");
+	                        String validate = in.nextLine();
+	                        if (validate.toLowerCase().charAt(0) == 'y') {
+								boolean exists = false; 
+								String pokemonToAdd;
+ 								do{
+		                            System.out.println("Enter the pokemon's name to add: ");
+									pokemonToAdd = in.nextLine();
+									for (String pokemon : pokes.nextLine().split(",")){
+										if (pokemonToAdd.equals(pokemon)){
+											exists = true;
+										}
+									}
+								} while(!exists);
+	                            partyPokemon[i] = pokemonToAdd;
+	                        } else {
+	                            for (int j = i; j < 6; j++) {
+	                                partyPokemon[j] = " ";
+	                            }
                             break;
-                        }
-                    }
+	                        }
+	                    }
+					} catch(FileNotFoundException e){
+						System.out.println("You broke it... :(");
+					}
                     //setParty(partyPokemon);
                     break;
-                case "number of badges":
+                case 7:
                     System.out.println("Enter a new number of badges for your profile: ");
                     numOfBadges = in.nextLine();
                     //setBadges(numOfBadges);
@@ -96,9 +117,6 @@ public class User {
                 default:
                     break;
             }
-            System.out.println("Do you want to continue editing your profile? (yes/no)");
-            c = in.nextLine();
-            cont = c.toLowerCase().charAt(0) == ('y'); //break;
         } while (cont == true);
     }
 
