@@ -97,7 +97,6 @@ public class Main {
                     userName = input.next();
                     System.out.println("Please enter a password");
                     userPass = input.next();
-                    //Add above (plus more? to database/text file
                     String[] userInfo = new String[15];
                     userInfo[0] = userName;
                     userInfo[1] = userPass;
@@ -146,21 +145,17 @@ public class Main {
                         System.out.println("How would you like to organize your feed?\n0 - by date, 1 - hashtag; 2 - username; 3 - location");
                         option = input.nextInt();
                         input.nextLine();
-                        System.out.println("Feed updating: ");
+                        System.out.println("\nFeed updating: \n");
                         Feed.generateFeed(option, length, UserManager.getUser(loggedInUser));
                         break;
                     case 2:
                         input.nextLine();  // clear newline out of the buffer
                         writePost(userName);
-                        // System.out.printf("Debug: postMessage contains %s\n", postMessage);
-                        //Store postMessage in text file
                         break;
                     case 3:
                         System.out.println("Please enter the username of the user who's profile you wish to view: ");
                         String viewUser = input.next();
                         String[] profile = UserManager.getUserInfo(UserManager.getUser(viewUser));
-                        // this prints out all user info. one line per word. shows password that's bad
-                        //probably needs to be formatted
 
                         for (int i = 0; i < profile.length; i++) {
 
