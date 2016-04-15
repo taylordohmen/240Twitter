@@ -40,25 +40,25 @@ public class User {
         ////System.out.println("Newly created profiles are completely blank by default.");  ADD THIS SOMEWHERE AS A DISCLAIMER (AFTER PROFILE CREATION?)
 
         do {
-			try{
-	            System.out.println("\nEnter an option to set: "
-                    + "\n1- Real Name"
-                    + "\n2- Age"
-                    + "\n3- Bio"
-                    + "\n4- Hometown"
-                    + "\n5- Favorite Pokemon type"
-                    + "\n6- Party Pokemon"
-                    + "\n7- Number of Badges"
-					+ "\n0- quit");
-    	        choice2 = in.nextInt();
-			} catch (InputMismatchException e){
-				System.out.println("Invalid input. Please enter a number listed.");
-				choice2 = -1;
-			}
+            try {
+                System.out.println("\nEnter an option to set: "
+                        + "\n1- Real Name"
+                        + "\n2- Age"
+                        + "\n3- Bio"
+                        + "\n4- Hometown"
+                        + "\n5- Favorite Pokemon type"
+                        + "\n6- Party Pokemon"
+                        + "\n7- Number of Badges"
+                        + "\n0- quit");
+                choice2 = in.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number listed.");
+                choice2 = -1;
+            }
             switch (choice2) {
-				case 0:
-					cont = false;
-					break;
+                case 0:
+                    cont = false;
+                    break;
                 case 1:
                     System.out.println("Enter a new real name: ");
                     realName = in.nextLine();
@@ -80,33 +80,33 @@ public class User {
                     favType = in.nextLine();
                     break;
                 case 6:
-					try(Scanner pokes = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))){
-	                    for (int i = 0; i < 6; i++) {
-	                        System.out.println("Add a new Pokemon to your party? (y/n): ");
-	                        String validate = in.nextLine();
-	                        if (validate.toLowerCase().charAt(0) == 'y') {
-								boolean exists = false; 
-								String pokemonToAdd;
- 								do{
-		                            System.out.println("Enter the pokemon's name to add: ");
-									pokemonToAdd = in.nextLine();
-									for (String pokemon : pokes.nextLine().split(",")){
-										if (pokemonToAdd.equals(pokemon)){
-											exists = true;
-										}
-									}
-								} while(!exists);
-	                            partyPokemon[i] = pokemonToAdd;
-	                        } else {
-	                            for (int j = i; j < 6; j++) {
-	                                partyPokemon[j] = " ";
-	                            }
-                            break;
-	                        }
-	                    }
-					} catch(FileNotFoundException e){
-						System.out.println("You broke it... :(");
-					}
+                    try (Scanner pokes = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))) {
+                        for (int i = 0; i < 6; i++) {
+                            System.out.println("Add a new Pokemon to your party? (y/n): ");
+                            String validate = in.nextLine();
+                            if (validate.toLowerCase().charAt(0) == 'y') {
+                                boolean exists = false;
+                                String pokemonToAdd;
+                                do {
+                                    System.out.println("Enter the pokemon's name to add: ");
+                                    pokemonToAdd = in.nextLine();
+                                    for (String pokemon : pokes.nextLine().split(",")) {
+                                        if (pokemonToAdd.equals(pokemon)) {
+                                            exists = true;
+                                        }
+                                    }
+                                } while (!exists);
+                                partyPokemon[i] = pokemonToAdd;
+                            } else {
+                                for (int j = i; j < 6; j++) {
+                                    partyPokemon[j] = " ";
+                                }
+                                break;
+                            }
+                        }
+                    } catch (FileNotFoundException e) {
+                        System.out.println("You broke it... :(");
+                    }
                     //setParty(partyPokemon);
                     break;
                 case 7:
