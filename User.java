@@ -96,7 +96,7 @@ public class User {
                 default:
                     break;
             }
-            System.out.println("Do you want to continue editing/viewing your profile? (yes/no)");
+            System.out.println("Do you want to continue editing your profile? (yes/no)");
             c = in.nextLine();
             cont = c.toLowerCase().equals("yes"); //break;
         } while (cont == true);
