@@ -54,7 +54,9 @@ public class Main {
         Date date = new Date();
         String hashArray[] = new String[hashtags.size()];
         convertToArray(hashtags, hashArray);
-        Post post = new Post(1234, date, privacy, loggedInUser, contents, location, hashArray);
+        int id = getNextPostID();
+        Post post = new Post(id, date, privacy, loggedInUser, contents, location, hashArray);
+        setNextPostID(id + 1);
         post.writePostToFile();
     }
 
@@ -214,5 +216,20 @@ public class Main {
         }
         return pokemon.split(",");
     }
+    
+    static int getNextPostID() {
+        int next = -1;
+        try (Scanner in = new Scanner(new FileInputStream("/tmp/fetchd/postID"))) {
+            next = in.nextInt();
+        } catch (IOException e) {
+        }
+        return next;
+    }
 
+    static void setNextPostID(int next) {
+        try (FileWriter fw = new FileWriter("/tmp/fetchd/postID", false)) {
+            fw.write(next);
+        } catch (IOException e) {
+        }
+    }
 }
