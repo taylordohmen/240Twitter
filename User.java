@@ -41,109 +41,60 @@ public class User {
 
         do {
 
-            System.out.println("\nWould you like to set or get user profile data members? (set/get):");
-            choice = in.nextLine();
+            System.out.println("\nEnter an option to set: "
+                    + "\nReal Name"
+                    + "\nAge"
+                    + "\nBio"
+                    + "\nHometown"
+                    + "\nFavorite Pokemon type"
+                    + "\nParty Pokemon"
+                    + "\nNumber of Badges");
+            choice2 = in.nextLine().toLowerCase();
 
-            switch (choice) {
-                case "set":
-                    System.out.println("\nEnter an option to set: "
-                            + "\nReal Name"
-                            + "\nAge"
-                            + "\nBio"
-                            + "\nHometown"
-                            + "\nFavorite Pokemon type"
-                            + "\nParty Pokemon"
-                            + "\nNumber of Badges");
-                    choice2 = in.nextLine().toLowerCase();
-
-                    switch (choice2) {
-                        case "real name":
-                            System.out.println("Enter a new real name: ");
-                            realName = in.nextLine();
-                            break;
-                        case "age":
-                            System.out.println("Enter a new age: ");
-                            age = in.nextLine();
-                            break;
-                        case "bio":
-                            System.out.println("Enter a new bio: ");
-                            bio = in.nextLine();
-                            break;
-                        case "hometown":
-                            System.out.println("Enter a new hometown: ");
-                            hometown = in.nextLine();
-                            break;
-                        case "favorite type of pokemon":
-                            System.out.println("Enter a new favorite type of pokemon: ");
-                            favType = in.nextLine();
-                            break;
-                        case "party pokemon":
-                            for (int i = 0; i < 6; i++) {
-                                System.out.println("Add a new Pokemon to your party? (y/n): ");
-                                String pokemon = in.nextLine();
-                                if (pokemon.toLowerCase().equals("y")) {
-                                    System.out.println("Enter the pokemon's name to add: ");
-                                    partyPokemon[i] = in.nextLine();
-                                } else {
-                                    for (int j = i; j < 6; j++) {
-                                        partyPokemon[j] = " ";
-                                    }
-                                    break;
-                                }
-                            }
-                            //setParty(partyPokemon);
-                            break;
-                        case "number of badges":
-                            System.out.println("Enter a new number of badges for your profile: ");
-                            numOfBadges = in.nextLine();
-                            //setBadges(numOfBadges);
-                            break;
-                        default:
-                            break;
-                    }
+            switch (choice2) {
+                case "real name":
+                    System.out.println("Enter a new real name: ");
+                    realName = in.nextLine();
                     break;
-                case "get":
-                    System.out.println("\nEnter an option to get: "
-                            + "\nUsername"
-                            + "\nReal Name"
-                            + "\nAge"
-                            + "\nBio"
-                            + "\nHometown"
-                            + "\nFavorite Pokemon type"
-                            + "\nParty Pokemon"
-                            + "\nNumber of Badges");
-                    choice2 = in.nextLine().toLowerCase();
-
-                    switch (choice2) {
-                        case "username":
-                            System.out.println(getUsername());
-                            break;
-                        case "real name":
-                            System.out.println(getRealName());
-                            break;
-                        case "age":
-                            System.out.println(getAge());
-                            break;
-                        case "bio":
-                            System.out.println(getBio());
-                            break;
-                        case "hometown":
-                            System.out.println(getHometown());
-                            break;
-                        case "favoite type of pokemon":
-                            System.out.println(getFavoriteType());
-                            break;
-                        case "party pokemon":
-                            for (String p : partyPokemon) {
-                                System.out.println(p);
+                case "age":
+                    System.out.println("Enter a new age: ");
+                    age = in.nextLine();
+                    break;
+                case "bio":
+                    System.out.println("Enter a new bio: ");
+                    bio = in.nextLine();
+                    break;
+                case "hometown":
+                    System.out.println("Enter a new hometown: ");
+                    hometown = in.nextLine();
+                    break;
+                case "favorite type of pokemon":
+                    System.out.println("Enter a new favorite type of pokemon: ");
+                    favType = in.nextLine();
+                    break;
+                case "party pokemon":
+                    for (int i = 0; i < 6; i++) {
+                        System.out.println("Add a new Pokemon to your party? (y/n): ");
+                        String pokemon = in.nextLine();
+                        if (pokemon.toLowerCase().equals("y")) {
+                            System.out.println("Enter the pokemon's name to add: ");
+                            partyPokemon[i] = in.nextLine();
+                        } else {
+                            for (int j = i; j < 6; j++) {
+                                partyPokemon[j] = " ";
                             }
                             break;
-                        case "number of badges":
-                            System.out.println(getBadges());
-                            break;
-                        default:
-                            break;
+                        }
                     }
+                    //setParty(partyPokemon);
+                    break;
+                case "number of badges":
+                    System.out.println("Enter a new number of badges for your profile: ");
+                    numOfBadges = in.nextLine();
+                    //setBadges(numOfBadges);
+                    break;
+                default:
+                    break;
             }
             System.out.println("Do you want to continue editing/viewing your profile? (yes/no)");
             c = in.nextLine();

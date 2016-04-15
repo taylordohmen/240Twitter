@@ -168,11 +168,8 @@ public class Main {
                         }
                         break;
                     case 6:
-                        System.out.println("Please enter the username of the user who's profile you wish to view: ");
-                        String updateUsername = input.next();
-                        User updateUser = UserManager.getUser(updateUsername);
-                        updateUser.updateProfile();
-                        UserManager.writeUserUpdates(updateUser);
+                        currentUser.updateProfile();
+                        UserManager.writeUserUpdates(currentUser);
                         break;
                     case 7:
                         System.out.println("Please enter the username of the user who you wish to subscribe to: ");
