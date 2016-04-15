@@ -41,16 +41,6 @@ public class Post {
             
         }
     }
-    
-//    private int numHashtags() {
-//        int numHashtags = 0;
-//        for (String s : this.postContents.split(" ")) {
-//            if (s.charAt(0) == '#' && s.length() > 1) {
-//                numHashtags++;
-//            }
-//        }
-//        return numHashtags;
-//    }
 
     public boolean hasHashtag(String hashtag) {
         boolean has = false;
