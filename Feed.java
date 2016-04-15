@@ -123,7 +123,7 @@ public class Feed {
 		try (Scanner readMons = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))) {
 			String pokemonList[] = readMons.nextLine().split(",");
 			for (String pokemon : pokemonList) {
-				if (hash.equals(pokemon)) {
+				if (hash.toLowerCase().equals(pokemon.toLowerCase())) {
 					pokemonSearch(pokemon);
 				}
 			}
@@ -192,7 +192,7 @@ public class Feed {
 		for (int i = length - 1; i >= 0; i--) {
 			read = feed[i];
 			if(!feed[i].getPostAuthor().equals("")){
-				System.out.printf("By user: %s\n%s:\n%s\nLocation: %s.\n\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
+				System.out.printf("\nBy user: %s\n%s:\n%s\nLocation: %s.\n\n", read.getPostAuthor(), read.getDate().toString(), read.getPostContents(), read.getLocationTag());
 			}
 		}
 	}
