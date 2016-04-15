@@ -98,7 +98,7 @@ public class User {
             }
             System.out.println("Do you want to continue editing your profile? (yes/no)");
             c = in.nextLine();
-            cont = c.toLowerCase().equals("yes"); //break;
+            cont = c.toLowerCase().charAt(0) == ('y'); //break;
         } while (cont == true);
     }
 
