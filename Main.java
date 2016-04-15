@@ -15,7 +15,7 @@ public class Main {
 		String contents = "";
 		if (privacy == 2) {
 			System.out.println("Please enter the username you would like to DM:");
-			contents.concat(in.next());
+			contents = contents.concat("@".concat(in.next()));
 		}
 		String location = "";
 		String locations[] = getLocations();

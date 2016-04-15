@@ -83,7 +83,7 @@ public class Feed {
                     }
                 }
                 if (privacy == 2) {
-                    if (currentUser.getUsername().equals(check.getPostContents().split(" ")[0])) {
+                    if (currentUser.getUsername().equals(check.getPostContents().split(" ")[0].substring(1))) {
                         feed[i] = check;
                     }
                 }
