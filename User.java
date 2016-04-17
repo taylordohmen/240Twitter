@@ -61,36 +61,36 @@ public class User {
                     break;
                 case 1:
                     System.out.println("Enter a new real name: ");
-                    realName = in.nextLine();
+                    realName = in.next();
                     break;
                 case 2:
                     System.out.println("Enter a new age: ");
-                    age = in.nextLine();
+                    age = in.next();
                     break;
                 case 3:
                     System.out.println("Enter a new bio: ");
-                    bio = in.nextLine();
+                    bio = in.next();
                     break;
                 case 4:
                     System.out.println("Enter a new hometown: ");
-                    hometown = in.nextLine();
+                    hometown = in.next();
                     break;
                 case 5:
                     System.out.println("Enter a new favorite type of pokemon: ");
-                    favType = in.nextLine();
+                    favType = in.next();
                     break;
                 case 6:
                     try (Scanner pokes = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))) {
                         for (int i = 0; i < 6; i++) {
                             System.out.println("Add a new Pokemon to your party? (y/n): ");
-                            String validate = in.nextLine();
+                            String validate = in.next();
                             if (validate.toLowerCase().charAt(0) == 'y') {
                                 boolean exists = false;
                                 String pokemonToAdd;
                                 do {
                                     System.out.println("Enter the pokemon's name to add: ");
-                                    pokemonToAdd = in.nextLine();
-                                    for (String pokemon : pokes.nextLine().split(",")) {
+                                    pokemonToAdd = in.next();
+                                    for (String pokemon : pokes.next().split(",")) {
                                         if (pokemonToAdd.equals(pokemon)) {
                                             exists = true;
                                         }
@@ -111,7 +111,7 @@ public class User {
                     break;
                 case 7:
                     System.out.println("Enter a new number of badges for your profile: ");
-                    numOfBadges = in.nextLine();
+                    numOfBadges = in.next();
                     //setBadges(numOfBadges);
                     break;
                 default:
