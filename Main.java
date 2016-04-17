@@ -87,7 +87,7 @@ public class Main {
 					+ "1)Register a new user\n"
 					+ "2)Log in\n"
 					+ "3)Quit");
-
+			try{
 			int selection = input.nextInt();
 
 			switch (selection) {
@@ -122,8 +122,10 @@ public class Main {
 				case 0:
 					break;
 				default:
-					System.out.println("Invalid Input");
-					break;
+					System.out.println("Invalid Input");				
+			}}catch(InputMismatchException e){
+				System.out.println("Invalid Input");
+				input.next();
 			}
 
 			while (loggedIn == true) {
