@@ -88,45 +88,46 @@ public class Main {
 					+ "2)Log in\n"
 					+ "3)Quit");
 			try{
-			int selection = input.nextInt();
+				int selection = input.nextInt();
 
-			switch (selection) {
-				case 1:
-					String userPass;
-					System.out.println("Thank you for choosing to register with Fetch'd!\nPlease enter a username: ");
-					userName = input.next();
-					System.out.println("Please enter a password");
-					userPass = input.next();
-					String[] userInfo = new String[15];
-					userInfo[0] = userName;
-					userInfo[1] = userPass;
-					for (int i = 2; i < userInfo.length; i++) {
-						userInfo[i] = "";
-					}
-					if (!UserManager.registerUser(userInfo)) {
+				switch (selection) {
+					case 1:
+						String userPass;
+						System.out.println("Thank you for choosing to register with Fetch'd!\nPlease enter a username: ");
+						userName = input.next();
+						System.out.println("Please enter a password");
+						userPass = input.next();
+						String[] userInfo = new String[15];
+						userInfo[0] = userName;
+						userInfo[1] = userPass;
+						for (int i = 2; i < userInfo.length; i++) {
+							userInfo[i] = "";
+						}
+						if (!UserManager.registerUser(userInfo)) {
+							break;
+						}
+					case 2:
+						System.out.println("Please log in");
+						System.out.println("Username: ");
+						String username = input.next();
+						System.out.println("Password: ");
+						String password = input.next();
+						//if username and password matches then
+						loggedIn = UserManager.loginUser(username, password);
+						loggedInUser = username;
+						currentUser = UserManager.getUser(loggedInUser);
 						break;
-					}
-				case 2:
-					System.out.println("Please log in");
-					System.out.println("Username: ");
-					String username = input.next();
-					System.out.println("Password: ");
-					String password = input.next();
-					//if username and password matches then
-					loggedIn = UserManager.loginUser(username, password);
-					loggedInUser = username;
-					currentUser = UserManager.getUser(loggedInUser);
-					break;
-				case 3:
-					System.exit(0);
-				case 0:
-					break;
-				default:
-					System.out.println("Invalid Input");				
-			}}catch(InputMismatchException e){
-				System.out.println("Invalid Input");
-				input.next();
-			}
+					case 3:
+						System.exit(0);
+					case 0:
+						break;
+					default:
+						System.out.println("Invalid Input");
+						break;				
+				}}catch(InputMismatchException e){
+					System.out.println("Invalid Input");
+					input.next();
+				}
 
 			while (loggedIn == true) {
 
@@ -139,63 +140,69 @@ public class Main {
 						+ "6) Unsubscribe to a user\n"
 						+ "7) Logout\n"
 						);
-				int selection2 = input.nextInt();
 
-				switch (selection2) {
-					case 1:
-						//ToDo: Refresh and display feed
-						int length = 20;
-						System.out.println("How many posts do you want in your feed?");
-						length = input.nextInt();
-						input.nextLine();
-						int option = 0;
-						System.out.println("How would you like to organize your feed?\n0 - by date, 1 - hashtag; 2 - username; 3 - location");
-						option = input.nextInt();
-						input.nextLine();
-						System.out.println("\nFeed updating: \n");
-						Feed.generateFeed(option, length, UserManager.getUser(loggedInUser));
-						break;
-					case 2:
-						input.nextLine();  // clear newline out of the buffer
-						writePost(userName);
-						break;
-					case 3:
-						System.out.println("Please enter the username of the user who's profile you wish to view: ");
-						String viewUser = input.next();
-						String[] profile = UserManager.getUserInfo(UserManager.getUser(viewUser));
+				try{
+					int selection2 = input.nextInt();
 
-						for (int i = 0; i < profile.length; i++) {
+					switch (selection2) {
+						case 1:
+							//ToDo: Refresh and display feed
+							int length = 20;
+							System.out.println("How many posts do you want in your feed?");
+							length = input.nextInt();
+							input.nextLine();
+							int option = 0;
+							System.out.println("How would you like to organize your feed?\n0 - by date, 1 - hashtag; 2 - username; 3 - location");
+							option = input.nextInt();
+							input.nextLine();
+							System.out.println("\nFeed updating: \n");
+							Feed.generateFeed(option, length, UserManager.getUser(loggedInUser));
+							break;
+						case 2:
+							input.nextLine();  // clear newline out of the buffer
+							writePost(userName);
+							break;
+						case 3:
+							System.out.println("Please enter the username of the user who's profile you wish to view: ");
+							String viewUser = input.next();
+							String[] profile = UserManager.getUserInfo(UserManager.getUser(viewUser));
 
-							if (i == 1) {
-								System.out.println("Password: Password Obscured");
-							} else {
-								System.out.println(fieldNames[i] + ": " + profile[i]);
+							for (int i = 0; i < profile.length; i++) {
+
+								if (i == 1) {
+									System.out.println("Password: Password Obscured");
+								} else {
+									System.out.println(fieldNames[i] + ": " + profile[i]);
+								}
 							}
-						}
-						break;
-					case 4:
-						currentUser.updateProfile();
-						UserManager.writeUserUpdates(currentUser);
-						break;
-					case 5:
-						System.out.println("Please enter the username of the user who you wish to subscribe to: ");
-						String subscribeToUser = input.next();
-						currentUser.subscribeTo(subscribeToUser);
-						break;
-					case 6:
-						System.out.println("Please enter the username of the user who you wish to unsubscribe to: ");
-						String unsubscribeToUser = input.next();
-						currentUser.unsubscribeTo(unsubscribeToUser);
-						break;
-					case 7:
-						System.out.println("Logging out...\n");
-						loggedIn = false;
-					case 0:
-						break;
-					default:
+							break;
+						case 4:
+							currentUser.updateProfile();
+							UserManager.writeUserUpdates(currentUser);
+							break;
+						case 5:
+							System.out.println("Please enter the username of the user who you wish to subscribe to: ");
+							String subscribeToUser = input.next();
+							currentUser.subscribeTo(subscribeToUser);
+							break;
+						case 6:
+							System.out.println("Please enter the username of the user who you wish to unsubscribe to: ");
+							String unsubscribeToUser = input.next();
+							currentUser.unsubscribeTo(unsubscribeToUser);
+							break;
+						case 7:
+							System.out.println("Logging out...\n");
+							loggedIn = false;
+						case 0:
+							break;
+						default:
+							System.out.println("Invalid Input");
+							break;
+
+					}}catch(InputMismatchException e){
 						System.out.println("Invalid Input");
-						break;
-				}
+						input.next();
+					}
 			}
 		}
 	}
