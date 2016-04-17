@@ -70,11 +70,13 @@ public class User {
 					break;
 				case 3:
 					System.out.println("Enter a new bio: ");
-					bio = in.next();
+					in.nextLine();
+					bio = in.nextLine();
 					break;
 				case 4:
 					System.out.println("Enter a new hometown: ");
-					hometown = in.next();
+					in.nextLine();
+					hometown = in.nextLine();
 					break;
 				case 5:
 					System.out.println("Enter a new favorite type of pokemon: ");
