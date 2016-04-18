@@ -32,6 +32,16 @@ public class Feed {
 				System.out.println("Please enter the hashtag you wish to search for");
 				String hash = in.nextLine();
 				updateHash(hash);
+				try (Scanner readMons = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))) {
+					String pokemonList[] = readMons.nextLine().split(",");
+					for (String pokemon : pokemonList) {
+						if (hash.toLowerCase().equals(pokemon.toLowerCase())) {
+							System.out.println(pokemonSearch(pokemon));
+						}
+					}
+				} catch (FileNotFoundException e) {
+					System.out.println("pokemon.csv not found, please add it to the working directory");
+				}
 				break;
 			case 2:
 				System.out.println("Please enter the username whose posts you wish to view");
@@ -77,8 +87,8 @@ public class Feed {
 				return true;
 			}
 		} else if (privacy == 2) {
-			System.out.printf("this user is %s, the sender is %s, the first element of the contents is %s, the substring is %s\n",
-					currentUser.getUsername(), check.getPostAuthor(), check.getPostContents().split(" ")[0], check.getPostContents().split(" ")[0].substring(1));
+			// System.out.printf("this user is %s, the sender is %s, the first element of the contents is %s, the substring is %s\n",
+			//		currentUser.getUsername(), check.getPostAuthor(), check.getPostContents().split(" ")[0], check.getPostContents().split(" ")[0].substring(1));
 			String user = currentUser.getUsername();
 			String recipient = check.getPostContents().split(" ")[0].substring(1);
 			if (user.equals(recipient) || user.equals(check.getPostAuthor())) {
@@ -120,16 +130,6 @@ public class Feed {
 			}
 		}
 		noNulls();
-		try (Scanner readMons = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))) {
-			String pokemonList[] = readMons.nextLine().split(",");
-			for (String pokemon : pokemonList) {
-				if (hash.toLowerCase().equals(pokemon.toLowerCase())) {
-					pokemonSearch(pokemon);
-				}
-			}
-		} catch (FileNotFoundException e) {
-			System.out.println("pokemon.csv not found, please add it to the working directory");
-		}
 	}
 
 	private static String pokemonSearch(String pokemon) {
