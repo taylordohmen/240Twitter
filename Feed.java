@@ -137,6 +137,9 @@ public class Feed {
 		int maxCount = count;
 		String chosen = "The pokemon you searched for has not been found yet!\nWill you be the first?";
 		for (int i = 0; i < length; i++) {
+			if(feed[i].getLocationTag().equals("")){
+				continue;
+			}
 			String check = feed[i].getLocationTag();
 			for (int j = i + 1; j < length; j++) {
 				if (check.equals(feed[j].getLocationTag())) {
@@ -151,7 +154,7 @@ public class Feed {
 		if (maxCount == 0) {
 			return chosen;
 		} else {
-			return "The pokemon you're searching for is most common found here: ".concat(chosen);
+			return "The pokemon you're searching for is most commonly found here: ".concat(chosen);
 		}
 	}
 

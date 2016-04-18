@@ -10,7 +10,7 @@ public class Main {
 
 	public static void writePost(String username) {
 		Scanner in = new Scanner(System.in);
-		System.out.println("Enter the privacy level you would like to apply to this post. \n(0 - Public; 1 - Subscribers; 2 - Direct Message; 3 - Private)");
+		System.out.println("Enter the privacy level you would like to apply to this post. \n(0 - Public; 1 - Subscribers; 2 - Direct Message)");
 		int privacy = in.nextInt();
 		in.nextLine();
 		String contents = "";
