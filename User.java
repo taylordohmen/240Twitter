@@ -84,6 +84,7 @@ public class User {
 					break;
 				case 6:
 					try (Scanner pokes = new Scanner(new FileInputStream("/tmp/fetchd/pokemon.csv"))) {
+						String allPokemon[] = pokes.nextLine().split(",");
 						for (int i = 0; i < 6; i++) {
 							System.out.println("Add a new Pokemon to your party? (y/n): ");
 							String validate = in.next();
@@ -93,7 +94,7 @@ public class User {
 								do {
 									System.out.println("Enter the pokemon's name to add: ");
 									pokemonToAdd = in.next();
-									for (String pokemon : pokes.next().split(",")) {
+									for (String pokemon : allPokemon) {
 										if (pokemonToAdd.equals(pokemon)) {
 											exists = true;
 										}
