@@ -171,7 +171,9 @@ public class Main {
 
 								if (i == 1) {
 									System.out.println("Password: Password Obscured");
-								} else {
+								} else if (i == 6) {
+                                                                    continue;
+                                                                } else {
 									System.out.println(fieldNames[i] + ": " + profile[i]);
 								}
 							}
